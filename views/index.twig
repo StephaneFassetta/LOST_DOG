@@ -1,0 +1,82 @@
+{% extends 'layout.twig' %}
+
+{% block navbar %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Crée une nouvelle partie de chien perdu</h5>
+                            <a role="button" class="btn btn-primary btn-lg btn-block mainButton" id="createRoom">Crée une partie</a>
+
+                            <form action="" method="post" id="formCreateRoom">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Nom de votre partie (ex : Partie entre amis)" aria-label="nameRoom" id="nameRoom" name="nameRoom" aria-describedby="basic-addon1">
+                                </div>
+                                <input type="hidden" id="newRoom" name="newRoom" aria-describedby="basic-addon1" value="1">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Rejoins une partie avec tes amis</h5>
+                            <a role="button" class="btn btn-secondary btn-lg btn-block mainButton" id="joinRoom">Rejoindre une partie</a>
+
+                            <form action="" method="post" id="formJoinRoom">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Nom de la partie à rejoindre (ex : Partie entre amis)" aria-label="roomToJoin" id="roomToJoin" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Votre pseudo durant la partie" aria-label="pseudoForJoin" name="pseudoForJoin" id="pseudoForJoin" aria-describedby="basic-addon1">
+                                </div>
+                                <input type="hidden" id="joinRoom" name="joinRoom" aria-describedby="basic-addon1" value="1">
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#createRoom').on('click', function (e) {
+                e.preventDefault();
+                let nameRoom = $('#nameRoom').val();
+
+                if (nameRoom == '') {
+                    alert('Pour crée une partie il faut rentrer un nom !')
+                } else {
+                    $('#formCreateRoom').attr('action', 'room/' + nameRoom);
+                    $('#formCreateRoom').submit();
+                }
+            });
+
+            $('#joinRoom').on('click', function (e) {
+                e.preventDefault();
+                let roomToJoin = $('#roomToJoin').val();
+                let pseudo = $('#pseudoForJoin').val();
+
+                if (pseudo == '') {
+                    alert('Pour rejoinde une partie il faut rentrer un nom !')
+                } else {
+                    $('#formJoinRoom').attr('action', 'room/' + roomToJoin);
+                    $('#formJoinRoom').submit();
+                }
+            });
+        });
+    </script>
+{% endblock %}

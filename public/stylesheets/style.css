@@ -1,0 +1,32 @@
+body {
+  padding: 100px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#name{
+  margin: auto 75px;
+}
+
+.mainButton {
+  margin: auto auto 3%;
+}
+
+.head-list-people {
+  background: #f8f8f8 none repeat scroll 0 0;
+  float: left;
+  overflow: hidden;
+  width: 13%;
+  border-right: 1px solid #c4c4c4;
+}
+
+.list-people {
+  height: 550px; overflow-y: scroll;
+}
+
+#story {
+  margin: 4%;
+}

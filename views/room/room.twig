@@ -1,0 +1,58 @@
+{% extends '../index.twig' %}
+
+{% block navbar %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <p id="role"> Ton rôle : </p>
+    <div class="head-list-people" i>
+        <button id="name" type="button" class="btn btn-primary">
+            <span class="badge badge-light" id="connected"></span> {{ nameRoom }}
+        </button>
+        <div class="list-people" id="list-people">
+
+        </div>
+    </div>
+    <div id="newPlayer">
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $('#newPlayer').append('');
+
+            if ('{{ type }}' == 'create') {
+                socketIo.emit('createRoom', { nameRoom : '{{ nameRoom }}' });
+            }
+
+            if ('{{ type }}' == 'join') {
+                socketIo.emit('joinRoom', { nameRoom : '{{ nameRoom }}', pseudo : '{{ pseudo }}' });
+                socketIo.emit('setRole', { pseudo : '{{ pseudo }}' });
+            }
+
+            socketIo.on('createRoom', function (data) {
+                $('#list-people').empty();
+                for (let client in data.list){
+                    $('#list-people').append('<p style="margin: 5px 5px">' + data.list[client] + '<p>');
+                }
+                $('#connected').text(data.number);
+
+            });
+
+            socketIo.on('joinRoom', function (data) {
+                $('#list-people').empty();
+                for (let client in data.list){
+                    $('#list-people').append('<p style="margin: 5px 5px">' + data.list[client] + '<p>');
+                }
+                $('#connected').text(data.number);
+            });
+
+            socketIo.on('setRole', function (data) {
+
+            });
+        });
+    </script>
+{% endblock %}
