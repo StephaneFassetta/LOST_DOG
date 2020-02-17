@@ -5,10 +5,11 @@ router.post('/:id', function(req, res, next) {
     let nameRoom = req.params.id;
 
     if (req.body.newRoom == '1') {
-        res.render('room/room', { type: 'create', nameRoom : nameRoom, role : 'admin'});
+        let pseudo = req.body.pseudoForCreate;
+        res.render('room/room', { type: 'create', nameRoom : nameRoom, pseudo : pseudo, status : 'admin'});
     } else {
         let pseudo = req.body.pseudoForJoin;
-        res.render('room/room', { type: 'join', nameRoom : nameRoom, pseudo : pseudo, role : 'player'});
+        res.render('room/room', { type: 'join', nameRoom : nameRoom, pseudo : pseudo, status : 'player'});
     }
 });
 

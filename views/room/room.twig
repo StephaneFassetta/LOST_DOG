@@ -25,12 +25,11 @@
             $('#newPlayer').append('');
 
             if ('{{ type }}' == 'create') {
-                socketIo.emit('createRoom', { nameRoom : '{{ nameRoom }}' });
+                socketIo.emit('createRoom', { nameRoom : '{{ nameRoom }}', pseudo : '{{ pseudo }}' });
             }
 
             if ('{{ type }}' == 'join') {
                 socketIo.emit('joinRoom', { nameRoom : '{{ nameRoom }}', pseudo : '{{ pseudo }}' });
-                socketIo.emit('setRole', { pseudo : '{{ pseudo }}' });
             }
 
             socketIo.on('createRoom', function (data) {
@@ -48,10 +47,6 @@
                     $('#list-people').append('<p style="margin: 5px 5px">' + data.list[client] + '<p>');
                 }
                 $('#connected').text(data.number);
-            });
-
-            socketIo.on('setRole', function (data) {
-
             });
         });
     </script>

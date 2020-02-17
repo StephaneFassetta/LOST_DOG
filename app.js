@@ -41,12 +41,11 @@ app.use(function(req, res, next) {
 
 io.on('connection', function(socket){
     var cookies = cookie.parse(socket.handshake.headers.cookie);
-
     socket.roleList = ['Chien perdu', 'Taxidermiste', 'Pisteur des montagnes', 'Habitant', 'Pretre'];
 
     socket.on('createRoom', function (dataRoom) {
         socket.join(dataRoom.nameRoom);
-        socket.pseudo = 'admin';
+        socket.pseudo = dataRoom.pseudo;
         io.sockets.in(dataRoom.nameRoom).emit('createRoom', {
             uuid : cookies.uuid,
             number : socketTools.nbrPlayerInRoom(dataRoom.nameRoom),
@@ -64,17 +63,6 @@ io.on('connection', function(socket){
             uuid : cookies.uuid,
             number : socketTools.nbrPlayerInRoom(dataRoom.nameRoom),
             list : socketTools.listUserInRoom(dataRoom.nameRoom),
-            roleInGame : socket.roleInGame
-        });
-    });
-
-    socket.on('setRole', function (dataRoom) {
-        socket.roleInGame = socket.roleList[Math.floor(Math.random() * socket.roleList.length)];
-        socket.roleList.splice(socket.roleList.indexOf(socket.roleInGame));
-
-        console.log(io.sockets.in(dataRoom.nameRoom).connected);
-
-        io.sockets.in(dataRoom.nameRoom).to('setRole', {
             roleInGame : socket.roleInGame
         });
     });
