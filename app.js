@@ -6,11 +6,15 @@ const logger = require('morgan');
 const uuidv1 = require('uuid/v1');
 var cookie = require('cookie');
 const Swal = require('sweetalert2');
+var players = {};
+var rooms = {};
+
 
 //__ Library
 var app = require('./bin/www').app;
 var io = require('./bin/www').io;
 var socketTools = require('./classes/socketTools')(io);
+var Player = require('./classes/Player.js');
 
 //__ Routing
 const indexRouter = require('./routes/index');
@@ -28,43 +32,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next) {
-    let cookieUuid = req.cookies.uuid;
 
-    if (cookieUuid == undefined) {
-        cookieUuid = uuidv1();
-        res.cookie('uuid', cookieUuid);
-    }
+io.on('connection', function(socket) {
 
-    next();
-});
-
-io.on('connection', function(socket){
-    var cookies = cookie.parse(socket.handshake.headers.cookie);
-    socket.roleList = ['Chien perdu', 'Taxidermiste', 'Pisteur des montagnes', 'Habitant', 'Pretre'];
-
-    socket.on('createRoom', function (dataRoom) {
+    socket.on('joinRoom', function (dataRoom)
+    {
         socket.join(dataRoom.nameRoom);
-        socket.pseudo = dataRoom.pseudo;
-        io.sockets.in(dataRoom.nameRoom).emit('createRoom', {
-            uuid : cookies.uuid,
-            number : socketTools.nbrPlayerInRoom(dataRoom.nameRoom),
-            list : socketTools.listUserInRoom(dataRoom.nameRoom)
-        });
+        console.log(dataRoom.nameRoom);
+        let newPlayer = new Player(dataRoom.pseudo, 'test', socket.id, (dataRoom.admin) == '1' ? true : false);
+        players[dataRoom.nameRoom] = newPlayer;
+        io.sockets.in(dataRoom.nameRoom).emit('joinRoom', { player : newPlayer, hasBeenCreate : (dataRoom.hasBeenCreate) == '1' ? true : false});
+        io.sockets.in(dataRoom.nameRoom).emit('refreshPlayersList', { players : players});
     });
 
-    socket.on('joinRoom', function (dataRoom) {
-        socket.join(dataRoom.nameRoom);
-        socket.pseudo = dataRoom.pseudo;
-        socket.roleInGame = socket.roleList[Math.floor(Math.random() * socket.roleList.length)];
-        socket.roleList.splice(socket.roleList.indexOf(socket.roleInGame));
-
-        io.sockets.in(dataRoom.nameRoom).emit('joinRoom', {
-            uuid : cookies.uuid,
-            number : socketTools.nbrPlayerInRoom(dataRoom.nameRoom),
-            list : socketTools.listUserInRoom(dataRoom.nameRoom),
-            roleInGame : socket.roleInGame
-        });
+    socket.on('sendMessage', function (dataRoom)
+    {
+        io.sockets.to(dataRoom.nameRoom).emit('sendMessage', {pseudo : dataRoom.pseudo, message : dataRoom.message});
     });
 });
 

@@ -3,14 +3,22 @@ var router = express.Router();
 
 router.post('/:id', function(req, res, next) {
     let nameRoom = req.params.id;
+    let pseudo = '';
+    let admin = 0;
+    let hasBeenCreate = 0;
 
     if (req.body.newRoom == '1') {
-        let pseudo = req.body.pseudoForCreate;
-        res.render('room/room', { type: 'create', nameRoom : nameRoom, pseudo : pseudo, status : 'admin'});
+        pseudo = req.body.pseudoForCreate;
+        admin = 1;
+        hasBeenCreate = 1;
     } else {
-        let pseudo = req.body.pseudoForJoin;
-        res.render('room/room', { type: 'join', nameRoom : nameRoom, pseudo : pseudo, status : 'player'});
+        pseudo = req.body.pseudoForJoin;
+        admin = 0;
+        hasBeenCreate = 0;
     }
+
+    res.render('room/room', { nameRoom : nameRoom, pseudo : pseudo, admin : admin, hasBeenCreate: hasBeenCreate });
+
 });
 
 module.exports = router;
