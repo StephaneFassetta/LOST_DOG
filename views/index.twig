@@ -31,7 +31,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Rejoins une partie avec tes amis</h5>
-                            <a role="button" class="btn btn-secondary btn-lg btn-block mainButton" id="joinRoom">Rejoindre une partie</a>
+                            <a role="button" class="btn btn-secondary btn-lg btn-block mainButton" id="client">Rejoindre une partie</a>
 
                             <form action="" method="post" id="formJoinRoom">
                                 <div class="input-group mb-3">
@@ -40,7 +40,7 @@
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Votre pseudo durant la partie" aria-label="pseudoForJoin" name="pseudoForJoin" id="pseudoForJoin" aria-describedby="basic-addon1">
                                 </div>
-                                <input type="hidden" id="joinRoom" name="joinRoom" aria-describedby="basic-addon1" value="1">
+                                <input type="hidden" id="client" name="client" aria-describedby="basic-addon1" value="1">
                             </form>
 
                         </div>
@@ -68,7 +68,7 @@
                 }
             });
 
-            $('#joinRoom').on('click', function (e) {
+            $('#client').on('click', function (e) {
                 e.preventDefault();
                 let roomToJoin = $('#roomToJoin').val();
                 let pseudo = $('#pseudoForJoin').val();

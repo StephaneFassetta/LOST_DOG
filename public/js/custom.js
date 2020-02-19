@@ -1,6 +1,5 @@
 $(function(){
     let page = window.location.pathname;
-    console.log(page);
 
     if(!page) {
         page = '/';

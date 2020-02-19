@@ -7,7 +7,7 @@ const uuidv1 = require('uuid/v1');
 var cookie = require('cookie');
 const Swal = require('sweetalert2');
 var players = {};
-var rooms = {};
+var totalRooms = {};
 
 
 //__ Library
@@ -15,6 +15,7 @@ var app = require('./bin/www').app;
 var io = require('./bin/www').io;
 var socketTools = require('./classes/socketTools')(io);
 var Player = require('./classes/Player.js');
+var Game = require('./classes/Game.js');
 
 //__ Routing
 const indexRouter = require('./routes/index');
@@ -35,14 +36,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', function(socket) {
 
-    socket.on('joinRoom', function (dataRoom)
+    socket.on('joinRoom', function (dataRoom, callback)
     {
-        socket.join(dataRoom.nameRoom);
-        console.log(dataRoom.nameRoom);
-        let newPlayer = new Player(dataRoom.pseudo, 'test', socket.id, (dataRoom.admin) == '1' ? true : false);
-        players[dataRoom.nameRoom] = newPlayer;
-        io.sockets.in(dataRoom.nameRoom).emit('joinRoom', { player : newPlayer, hasBeenCreate : (dataRoom.hasBeenCreate) == '1' ? true : false});
-        io.sockets.in(dataRoom.nameRoom).emit('refreshPlayersList', { players : players});
+        socket.join(dataRoom.gameInfos.nameRoom);
+
+        if (dataRoom.gameInfos.hasBeenCreate == '1') {
+            totalRooms[dataRoom.gameInfos.name] = dataRoom.game;
+            console.log('New game is created.');
+            dataRoom.game.playerNumber++;
+            callback();
+        } else {
+            let gameToJoin = totalRooms[dataRoom.gameInfos.name];
+
+            if (gameToJoin) {
+                gameToJoin.players.push(new Player(dataRoom.playerInfos.pseudo, 'test', socket.id, (dataRoom.playerInfos.admin) == '1' ? true : false));
+                console.log('Player have join this room ' + dataRoom.playerInfos.pseudo);
+            }
+        }
     });
 
     socket.on('sendMessage', function (dataRoom)
