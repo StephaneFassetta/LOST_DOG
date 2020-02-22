@@ -9,13 +9,13 @@ $(document).ready(function () {
     const maxPlayerLimit = $('#maxPlayerLimit').val();
 
     const gameRoomInfos = {'nameRoom' : nameRoom, 'hasBeenCreate' : hasBeenCreate, 'maxPlayerLimit' : maxPlayerLimit};
-    const player = new Player(pseudo, 'test', socketIo.id, isAdmin);
+    const player = new Player(pseudo, null, socketIo.id, isAdmin);
     console.log('Ready for create game...');
-    createGame(player, gameRoomInfos);
+    createGameRoom(player, gameRoomInfos);
 });
 
 
-function createGame(playerInfos, gameRoomInfos)
+function createGameRoom(playerInfos, gameRoomInfos)
 {
     const gameRoom = new GameRoom(gameRoomInfos.nameRoom, gameRoomInfos.maxPlayerLimit);
     socketIo.emit('createGameRoom', gameRoom, function () {

@@ -4,7 +4,7 @@ $(document).ready(function () {
     const pseudo = $('#pseudo').val();
     const isAdmin = $('#admin').val();
     const nameRoom = $('#nameRoom').val();
-    const player = new Player(pseudo, 'test', socketIo.id, isAdmin);
+    const player = new Player(pseudo, null, socketIo.id, isAdmin);
 
     console.log('Ready for join game...');
     joinGame(player, nameRoom);

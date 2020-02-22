@@ -15,14 +15,18 @@
         <input type="hidden" id="maxPlayerLimit" value="{{ maxPlayerLimit }}">
     </div>
 
-    <p id="role"> Ton rôle : </p>
     <div class="head-list-people" style="text-align: center">
         <span id="nameRoom">{{ nameRoom }}</span>
         <span id="ingame-user"></span>/<span id="limit-user"></span>
 
         <div class="list-people" id="list-people">
         </div>
+
+        {% if admin == 1 %}
+            <a class="btn btn-primary" href="#" role="button" id="btn-launch-game">Lancer la partie</a>
+        {% endif %}
     </div>
+
     <div class="container">
         <div class="row">
             <div class="panel panel-primary">
@@ -45,7 +49,6 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block javascripts %}

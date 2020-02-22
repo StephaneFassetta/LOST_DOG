@@ -35,6 +35,23 @@ app.use('/classes', express.static(path.join(__dirname, 'classes')));
 io.on('connection', function(socket) {
     console.log('Connexion au socket');
 
+    socket.on('disconnect', function ()
+    {
+        if (socket.game) {
+            const gameExist = socket.game;
+
+            Object.keys(gameExist.players).forEach(function (key) {
+                if (gameExist.players[key].socketId == socket.id) {
+                    console.log('Le joueur ' + gameExist.players[key].name + ' à quitté la partie !');
+                    gameExist.players.splice(gameExist.players.indexOf(gameExist.players[key]));
+                }
+            });
+
+            io.sockets.to(gameExist.name).emit('refreshInfosUsersAndGame', { 'game' : gameExist });
+        }
+    });
+
+
     socket.on('joinGameRoom', function (dataRoom)
     {
         const gameExist = roomsActive[Object.keys(roomsActive).find((key) => key === dataRoom.name)];
@@ -43,6 +60,7 @@ io.on('connection', function(socket) {
             socket.join(dataRoom.name);
             gameExist.players.push(dataRoom.player);
             console.log('Vous avez rejoins une room. Nom de la room : ' + dataRoom.name);
+            socket.game = gameExist;
             io.sockets.to(gameExist.name).emit('refreshInfosUsersAndGame', { 'game' : gameExist });
         }
     });
@@ -53,6 +71,14 @@ io.on('connection', function(socket) {
         roomsActive[game.name] = game;
         console.log('Une room vient d\'être créé. Nom de la room : ' + game.name);
         callbackSuccess();
+    });
+
+    socket.on('startGame', function (nameRoom)
+    {
+        let gameToStart = roomsActive[nameRoom];
+        console.log('La partie ' + gameToStart.name + ' a été lancé ! C\'est parti !');
+
+
     });
 });
 

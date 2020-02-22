@@ -19,12 +19,13 @@ a {
   background: #f8f8f8 none repeat scroll 0 0;
   float: left;
   overflow: hidden;
-  width: 40%;
+  width: 28%;
   border-right: 1px solid #c4c4c4;
 }
 
 .list-people {
-  height: 550px; overflow-y: scroll;
+  height: 507px;
+  overflow-y: scroll;
 }
 
 #story {
@@ -70,7 +71,7 @@ a {
 .panel-body
 {
   overflow-y: scroll;
-  height: 550px;
+  height: 533px;
 }
 
 ::-webkit-scrollbar-track
@@ -98,4 +99,14 @@ a {
 
 .panel-footer {
   margin-top: 2%;
+}
+
+#btn-launch-game {
+  margin-bottom: 3%;
+  margin-top: 3%;
+  display: none;
+}
+
+#card-counter {
+  text-align: center;
 }
