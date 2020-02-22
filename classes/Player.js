@@ -1,13 +1,13 @@
-var Player = class {
+class Player {
 
-    constructor(name, role, socketId, isAdmin){
+    constructor(name, role, socketId, isAdmin) {
         this.name = name;
         this.socketId = socketId;
-        this.role = role;
         this.isAdmin = isAdmin;
+        this.role = role;
         this.alive = true;
     }
 
 };
 
-module.exports = Player;
+export default Player;

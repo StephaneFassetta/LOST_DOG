@@ -1,18 +1,46 @@
-$(function(){
-    let page = window.location.pathname;
-    console.log(page);
+$(document).ready(function(){
+    $('#createRoom').on('click', function (e) {
+        e.preventDefault();
+        let nameRoom = $('#nameRoom').val();
+        let pseudo = $('#pseudoForCreate').val();
 
-    if(!page) {
-        page = '/';
-    }
-
-    $('.navbar-nav li a').each(function(){
-        let href = $(this).attr('href');
-
-        if ((href == page) || (href == '')) {
-            $(this).addClass('active');
+        if (nameRoom == '' || pseudo == '') {
+            alert('Pour crée une partie il faut rentrer un nom ET un pseudo !')
         } else {
-            $(this).removeClass('active');
+            $('#formCreateRoom').attr('action', 'room/' + nameRoom);
+            $('#formCreateRoom').submit();
         }
     });
+
+    $('#joinRoom').on('click', function (e) {
+        e.preventDefault();
+        let roomToJoin = $('#roomToJoin').val();
+        let pseudo = $('#pseudoForJoin').val();
+
+        if (roomToJoin.trim() == '' || pseudo.trim() == '') {
+            alert('Pour rejoindre une partie il faut rentrer un nom ET un pseudo !')
+        } else {
+            $('#formJoinRoom').attr('action', 'room/' + roomToJoin);
+            $('#formJoinRoom').submit();
+        }
+    });
+
+    $(function(){
+        let page = window.location.pathname;
+
+        if(!page) {
+            page = '/';
+        }
+
+        $('.navbar-nav li a').each(function(){
+            let href = $(this).attr('href');
+
+            if ((href == page) || (href == '')) {
+                $(this).addClass('active');
+            } else {
+                $(this).removeClass('active');
+            }
+        });
+    });
+
 });

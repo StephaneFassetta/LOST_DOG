@@ -18,8 +18,11 @@
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Nom de votre partie (ex : Partie entre amis)" aria-label="nameRoom" id="nameRoom" name="nameRoom" aria-describedby="basic-addon1">
                                 </div>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Votre pseudo durant la partie" aria-label="pseudoForCreate" name="pseudoForCreate" id="pseudoForCreate" aria-describedby="basic-addon1">
+                                <div class="input-group mb-3" style="width: 60%; margin: auto;">
+                                    <input type="text" class="form-control" placeholder="Votre pseudo durant la partie" aria-label="pseudoToCreate" name="pseudo" id="pseudoForCreate" class aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-3" style="width: 30%; margin: auto;">
+                                    <input type="text" class="form-control" placeholder="Nombre de joueurs maximum" aria-label="maxPlayerLimit" name="maxPlayerLimit" id="maxPlayerLimit" class aria-describedby="basic-addon1">
                                 </div>
                                 <input type="hidden" id="newRoom" name="newRoom" aria-describedby="basic-addon1" value="1">
                             </form>
@@ -37,8 +40,8 @@
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Nom de la partie à rejoindre (ex : Partie entre amis)" aria-label="roomToJoin" id="roomToJoin" aria-describedby="basic-addon1">
                                 </div>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Votre pseudo durant la partie" aria-label="pseudoForJoin" name="pseudoForJoin" id="pseudoForJoin" aria-describedby="basic-addon1">
+                                <div class="input-group mb-3" style="width: 60%; margin: auto;">
+                                    <input type="text" class="form-control" placeholder="Votre pseudo durant la partie" aria-label="pseudoToJoin" name="pseudo" id="pseudoForJoin" aria-describedby="basic-addon1">
                                 </div>
                                 <input type="hidden" id="joinRoom" name="joinRoom" aria-describedby="basic-addon1" value="1">
                             </form>
@@ -49,37 +52,19 @@
             </div>
         </div>
     </div>
+    <div class="card-group">
+        {% for cards in cardsRole %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ cards.role }}</h5>
+                    <p class="card-text">{{ cards.description }}</p>
+                    <button data-decrease>-</button><input style="width: 20%" data-value type="text" value="0"/><button data-increase>+</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#createRoom').on('click', function (e) {
-                e.preventDefault();
-                let nameRoom = $('#nameRoom').val();
-
-                if (nameRoom == '') {
-                    alert('Pour crée une partie il faut rentrer un nom !')
-                } else {
-                    $('#formCreateRoom').attr('action', 'room/' + nameRoom);
-                    $('#formCreateRoom').submit();
-                }
-            });
-
-            $('#joinRoom').on('click', function (e) {
-                e.preventDefault();
-                let roomToJoin = $('#roomToJoin').val();
-                let pseudo = $('#pseudoForJoin').val();
-
-                if (pseudo == '') {
-                    alert('Pour rejoinde une partie il faut rentrer un nom !')
-                } else {
-                    $('#formJoinRoom').attr('action', 'room/' + roomToJoin);
-                    $('#formJoinRoom').submit();
-                }
-            });
-        });
-    </script>
 {% endblock %}

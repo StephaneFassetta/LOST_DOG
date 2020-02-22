@@ -6,20 +6,18 @@ const logger = require('morgan');
 const uuidv1 = require('uuid/v1');
 var cookie = require('cookie');
 const Swal = require('sweetalert2');
-var players = {};
-var rooms = {};
-
 
 //__ Library
 var app = require('./bin/www').app;
 var io = require('./bin/www').io;
 var socketTools = require('./classes/socketTools')(io);
-var Player = require('./classes/Player.js');
 
 //__ Routing
 const indexRouter = require('./routes/index');
 const roomRouter = require('./routes/room/room.index');
 const settingsRouter = require('./routes/settings/settings.index');
+
+var roomsActive = {};
 
 //__ Views engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,23 +29,30 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/classes', express.static(path.join(__dirname, 'classes')));
 
 
 io.on('connection', function(socket) {
+    console.log('Connexion au socket');
 
-    socket.on('joinRoom', function (dataRoom)
+    socket.on('joinGameRoom', function (dataRoom)
     {
-        socket.join(dataRoom.nameRoom);
-        console.log(dataRoom.nameRoom);
-        let newPlayer = new Player(dataRoom.pseudo, 'test', socket.id, (dataRoom.admin) == '1' ? true : false);
-        players[dataRoom.nameRoom] = newPlayer;
-        io.sockets.in(dataRoom.nameRoom).emit('joinRoom', { player : newPlayer, hasBeenCreate : (dataRoom.hasBeenCreate) == '1' ? true : false});
-        io.sockets.in(dataRoom.nameRoom).emit('refreshPlayersList', { players : players});
+        const gameExist = roomsActive[Object.keys(roomsActive).find((key) => key === dataRoom.name)];
+
+        if (gameExist && gameExist.players.length < gameExist.size) {
+            socket.join(dataRoom.name);
+            gameExist.players.push(dataRoom.player);
+            console.log('Vous avez rejoins une room. Nom de la room : ' + dataRoom.name);
+            io.sockets.to(gameExist.name).emit('refreshInfosUsersAndGame', { 'game' : gameExist });
+        }
     });
 
-    socket.on('sendMessage', function (dataRoom)
+    socket.on('createGameRoom', function (game, callbackSuccess)
     {
-        io.sockets.to(dataRoom.nameRoom).emit('sendMessage', {pseudo : dataRoom.pseudo, message : dataRoom.message});
+        socket.join(game.name);
+        roomsActive[game.name] = game;
+        console.log('Une room vient d\'être créé. Nom de la room : ' + game.name);
+        callbackSuccess();
     });
 });
 

@@ -5,13 +5,22 @@
 {% endblock %}
 
 {% block body %}
-    <p id="role"> Ton rôle : </p>
-    <div class="head-list-people" i>
-        <button id="name" type="button" class="btn btn-primary">
-            <span class="badge badge-light" id="connected"></span> {{ nameRoom }}
-        </button>
-        <div class="list-people" id="list-people">
+    <div id="playerProfil" style="display: none">
+        <input type="hidden" id="pseudo" value="{{ pseudo }}">
+        <input type="hidden" id="admin" value="{{ admin }}">
+    </div>
+    <div id="gameRoomProfil" style="display: none">
+        <input type="hidden" id="nameRoom" value="{{ nameRoom }}">
+        <input type="hidden" id="hasBeenCreate" value="{{ hasBeenCreate }}">
+        <input type="hidden" id="maxPlayerLimit" value="{{ maxPlayerLimit }}">
+    </div>
 
+    <p id="role"> Ton rôle : </p>
+    <div class="head-list-people" style="text-align: center">
+        <span id="nameRoom">{{ nameRoom }}</span>
+        <span id="ingame-user"></span>/<span id="limit-user"></span>
+
+        <div class="list-people" id="list-people">
         </div>
     </div>
     <div class="container">
@@ -26,9 +35,10 @@
                         <div class="input-group">
                             <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                             <span class="input-group-btn">
-                        <button class="btn btn-warning btn-sm" id="btn-chat">
-                            Send</button>
-                    </span>
+                                <button class="btn btn-warning btn-sm" id="btn-chat">
+                                    Send
+                                </button>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -40,70 +50,13 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        $(document).ready(function(){
-            socketIo.emit('joinRoom', { nameRoom : '{{ nameRoom }}', pseudo : '{{ pseudo }}', admin : '{{ admin }}', hasBeenCreate : '{{ hasBeenCreate }}'});
+    <script type="module" src="/js/in_game.js"></script>
+    <script type="module" src="/js/utils.js"></script>
 
-            $('#btn-chat').on('click', (e) => {
-                socketIo.emit('sendMessage', { nameRoom : '{{ nameRoom }}', pseudo : '{{ pseudo }}', message : $('#btn-input').val()});
-                $('#btn-input').val('');
-            });
+    {% if hasBeenCreate  == '1' %}
+        <script type="module" src="/js/create_game_room.js"></script>
+    {% else %}
+        <script type="module" src="/js/join_game.js"></script>
+    {% endif %}
 
-            socketIo.on('joinRoom', function (data)
-            {
-                if (data.hasBeenCreate) {
-                    addEventInChat(data.player.name, 'Vient de crée la partie !');
-                } else {
-                    addEventInChat(data.player.name, 'Vient de rejoindre la partie !');
-                }
-
-                $('#list-people').empty();
-            });
-
-            socketIo.on('sendMessage', function (data) {
-                $('.chat').append('<li class="right clearfix">\n' +
-                    '<div class="chat-body clearfix">\n' +
-                    '<div class="header">\n' +
-                    '<strong class="primary-font">'+ data.pseudo +'</strong>\n' +
-                    '</div>\n' +
-                    '<p>' + data.message + '</p>\n' +
-                    '</div>\n' +
-                    '</li>'
-                );
-            });
-
-            socketIo.on('refreshPlayersList', function (data) {
-                refreshPlayersList(data.players);
-            });
-        });
-
-        function addMessageInChat(pseudo, message) {
-            $('.chat').append('<li class="right clearfix">\n' +
-                '<div class="chat-body clearfix">\n' +
-                '<div class="header">\n' +
-                '<strong class="primary-font">'+ pseudo +'</strong>\n' +
-                '</div>\n' +
-                '<p>' + message + '</p>\n' +
-                '</div>\n' +
-                '</li>'
-            );
-        }
-
-        function addEventInChat(pseudo, message) {
-            $('.chat').append('<li class="right clearfix">\n' +
-                '<div class="chat-body clearfix">\n' +
-                '<div class="header">\n' +
-                '</div>\n' +
-                '<p><b>' + pseudo +' : '+ message + '<b></p>\n' +
-                '</div>\n' +
-                '</li>'
-            );
-        }
-
-        function refreshPlayersList(players) {
-            players.forEach(function(player) {
-                $('#list-people').append('<p style="margin: 5px 5px">' + player.name + '('+ player.role +')<p>');
-            })
-        }
-    </script>
 {% endblock %}
