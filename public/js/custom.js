@@ -7,6 +7,12 @@ $(document).ready(function(){
         if (nameRoom == '' || pseudo == '') {
             alert('Pour crée une partie il faut rentrer un nom ET un pseudo !')
         } else {
+            let lengthCard = $('#card-counter').length;
+
+            for (let i; i < lengthCard; i++) {
+                $('#role-in-game').append('')
+            }
+
             $('#formCreateRoom').attr('action', 'room/' + nameRoom);
             $('#formCreateRoom').submit();
         }

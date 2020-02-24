@@ -40,7 +40,7 @@ io.on('connection', function(socket) {
         if (socket.game) {
             const gameExist = socket.game;
 
-            Object.keys(gameExist.players).forEach(function (key) {
+            Object.keys(gameExist.players).forEach(function(key) {
                 if (gameExist.players[key].socketId == socket.id) {
                     console.log('Le joueur ' + gameExist.players[key].name + ' à quitté la partie !');
                     gameExist.players.splice(gameExist.players.indexOf(gameExist.players[key]));
@@ -51,7 +51,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('joinGameRoom', function (dataRoom)
+    socket.on('joinGameRoom', function(dataRoom)
     {
         const gameExist = roomsActive[Object.keys(roomsActive).find((key) => key === dataRoom.name)];
 
@@ -64,7 +64,7 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('createGameRoom', function (game, callbackSuccess)
+    socket.on('createGameRoom', function(game, callbackSuccess)
     {
         socket.join(game.name);
         roomsActive[game.name] = game;
@@ -72,9 +72,9 @@ io.on('connection', function(socket) {
         callbackSuccess();
     });
 
-    socket.on('startGame', function (nameRoom)
+    socket.on('startGame', function(nameRoom)
     {
-        let gameToStart = roomsActive[nameRoom];
+        let gameToStart = roomsActive[nameRoom.name];
         console.log('La partie ' + gameToStart.name + ' a été lancé ! C\'est parti !');
 
 
