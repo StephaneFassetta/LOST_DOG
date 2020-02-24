@@ -6,21 +6,18 @@ const logger = require('morgan');
 const uuidv1 = require('uuid/v1');
 var cookie = require('cookie');
 const Swal = require('sweetalert2');
-var players = {};
-var totalRooms = {};
-
 
 //__ Library
 var app = require('./bin/www').app;
 var io = require('./bin/www').io;
 var socketTools = require('./classes/socketTools')(io);
-var Player = require('./classes/Player.js');
-var Game = require('./classes/Game.js');
 
 //__ Routing
 const indexRouter = require('./routes/index');
 const roomRouter = require('./routes/room/room.index');
 const settingsRouter = require('./routes/settings/settings.index');
+
+var roomsActive = {};
 
 //__ Views engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,32 +29,55 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/classes', express.static(path.join(__dirname, 'classes')));
 
 
 io.on('connection', function(socket) {
+    console.log('Connexion au socket');
 
-    socket.on('joinRoom', function (dataRoom, callback)
+    socket.on('disconnect', function ()
     {
-        socket.join(dataRoom.gameInfos.nameRoom);
+        if (socket.game) {
+            const gameExist = socket.game;
 
-        if (dataRoom.gameInfos.hasBeenCreate == '1') {
-            totalRooms[dataRoom.gameInfos.name] = dataRoom.game;
-            console.log('New game is created.');
-            dataRoom.game.playerNumber++;
-            callback();
-        } else {
-            let gameToJoin = totalRooms[dataRoom.gameInfos.name];
+            Object.keys(gameExist.players).forEach(function (key) {
+                if (gameExist.players[key].socketId == socket.id) {
+                    console.log('Le joueur ' + gameExist.players[key].name + ' à quitté la partie !');
+                    gameExist.players.splice(gameExist.players.indexOf(gameExist.players[key]));
+                }
+            });
 
-            if (gameToJoin) {
-                gameToJoin.players.push(new Player(dataRoom.playerInfos.pseudo, 'test', socket.id, (dataRoom.playerInfos.admin) == '1' ? true : false));
-                console.log('Player have join this room ' + dataRoom.playerInfos.pseudo);
-            }
+            io.sockets.to(gameExist.name).emit('refreshInfosUsersAndGame', { 'game' : gameExist });
         }
     });
 
-    socket.on('sendMessage', function (dataRoom)
+    socket.on('joinGameRoom', function (dataRoom)
     {
-        io.sockets.to(dataRoom.nameRoom).emit('sendMessage', {pseudo : dataRoom.pseudo, message : dataRoom.message});
+        const gameExist = roomsActive[Object.keys(roomsActive).find((key) => key === dataRoom.name)];
+
+        if (gameExist && gameExist.players.length < gameExist.size) {
+            socket.join(dataRoom.name);
+            gameExist.players.push(dataRoom.player);
+            console.log('Vous avez rejoins une room. Nom de la room : ' + dataRoom.name);
+            socket.game = gameExist;
+            io.sockets.to(gameExist.name).emit('refreshInfosUsersAndGame', { 'game' : gameExist });
+        }
+    });
+
+    socket.on('createGameRoom', function (game, callbackSuccess)
+    {
+        socket.join(game.name);
+        roomsActive[game.name] = game;
+        console.log('Une room vient d\'être créé. Nom de la room : ' + game.name);
+        callbackSuccess();
+    });
+
+    socket.on('startGame', function (nameRoom)
+    {
+        let gameToStart = roomsActive[nameRoom];
+        console.log('La partie ' + gameToStart.name + ' a été lancé ! C\'est parti !');
+
+
     });
 });
 

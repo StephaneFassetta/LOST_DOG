@@ -5,15 +5,28 @@
 {% endblock %}
 
 {% block body %}
-    <p id="role"> Ton rôle : </p>
-    <div class="head-list-people" i>
-        <button id="name" type="button" class="btn btn-primary">
-            <span class="badge badge-light" id="connected"></span> {{ nameRoom }}
-        </button>
-        <div class="list-people" id="list-people">
-
-        </div>
+    <div id="playerProfil" style="display: none">
+        <input type="hidden" id="pseudo" value="{{ pseudo }}">
+        <input type="hidden" id="admin" value="{{ admin }}">
     </div>
+    <div id="gameRoomProfil" style="display: none">
+        <input type="hidden" id="nameRoom" value="{{ nameRoom }}">
+        <input type="hidden" id="hasBeenCreate" value="{{ hasBeenCreate }}">
+        <input type="hidden" id="maxPlayerLimit" value="{{ maxPlayerLimit }}">
+    </div>
+
+    <div class="head-list-people" style="text-align: center">
+        <span id="nameRoom">{{ nameRoom }}</span>
+        <span id="ingame-user"></span>/<span id="limit-user"></span>
+
+        <div class="list-people" id="list-people">
+        </div>
+
+        {% if admin == 1 %}
+            <a class="btn btn-primary" href="#" role="button" id="btn-launch-game">Lancer la partie</a>
+        {% endif %}
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="panel panel-primary">
@@ -26,27 +39,26 @@
                         <div class="input-group">
                             <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                             <span class="input-group-btn">
-                        <button class="btn btn-warning btn-sm" id="btn-chat">
-                            Send</button>
-                    </span>
+                                <button class="btn btn-warning btn-sm" id="btn-chat">
+                                    Send
+                                </button>
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="module" src="/js/in_game.js"></script>
+    <script type="module" src="/js/utils.js"></script>
 
-    <script type="text/javascript">
-        $(document).on('ready', function() {
-            var playerProfil = { pseudo : '{{ pseudo }}', admin : '{{ admin }}'};
-            var roomProfil = { nameRoom : '{{ nameRoom }}', hasBeenCreate : '{{ hasBeenCreate }}'};
-
-            joinRoom(playerProfil, roomProfil);
-        });
-    </script>
+    {% if hasBeenCreate  == '1' %}
+        <script type="module" src="/js/create_game_room.js"></script>
+    {% else %}
+        <script type="module" src="/js/join_game.js"></script>
+    {% endif %}
 {% endblock %}
