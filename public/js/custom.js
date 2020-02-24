@@ -25,6 +25,19 @@ $(document).ready(function(){
         }
     });
 
+    $('.btn-incremented-counter').on('click', function(e) {
+        let childrenInput = $('#' + e.currentTarget.dataset.childrenInput);
+        console.log(childrenInput)
+        let valueChildren =  parseInt(childrenInput.val());
+        childrenInput.val(valueChildren + 1);
+    });
+
+    $('.btn-decremented-counter').on('click', function(e) {
+        let childrenInput = $('#' + e.currentTarget.dataset.childrenInput);
+        let valueChildren =  parseInt(childrenInput.val());
+        childrenInput.val(valueChildren - 1);
+    });
+
     $(function(){
         let page = window.location.pathname;
 

@@ -34,7 +34,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Rejoins une partie avec tes amis</h5>
-                            <a role="button" class="btn btn-secondary btn-lg btn-block mainButton" id="client">Rejoindre une partie</a>
+                            <a role="button" class="btn btn-secondary btn-lg btn-block mainButton" id="joinRoom">Rejoindre une partie</a>
 
                             <form action="" method="post" id="formJoinRoom">
                                 <div class="input-group mb-3">
@@ -53,13 +53,13 @@
         </div>
     </div>
     <div class="card-group">
-        {% for cards in cardsRole %}
+        {% for key, cards in cardsRole %}
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ cards.role }}</h5>
                     <p class="card-text">{{ cards.description }}</p>
                     <div id="card-counter">
-                        <button data-decrease>-</button><input style="width: 20%" data-value type="text" value="0"/><button data-increase>+</button>
+                        <button class="btn-incremented-counter" data-children-input="card_{{ key }}">+</button><input style="width: 20%; text-align: center" class="counter_card" id="card_{{ key }}" type="text" value="0"/><button class="btn-decremented-counter" data-children-input="card_{{ key }}">-</button>
                     </div>
                 </div>
             </div>
