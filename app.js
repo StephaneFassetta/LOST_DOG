@@ -76,8 +76,6 @@ io.on('connection', function(socket) {
     {
         let gameToStart = roomsActive[nameRoom.name];
         console.log('La partie ' + gameToStart.name + ' a été lancé ! C\'est parti !');
-
-
     });
 });
 
