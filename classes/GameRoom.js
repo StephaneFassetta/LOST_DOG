@@ -2,7 +2,7 @@ class GameRoom {
 
     constructor(name, size) {
         this.name = name;
-        this.deck = [];
+        this.cards = [];
         this.size = size;
         this.players = [];
         this.status = "lobby";

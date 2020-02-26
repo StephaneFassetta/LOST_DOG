@@ -1,3 +1,4 @@
+const babel = require("@babel/register")({presets: ["@babel/preset-env"]});
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -6,6 +7,7 @@ const logger = require('morgan');
 const uuidv1 = require('uuid/v1');
 var cookie = require('cookie');
 const Swal = require('sweetalert2');
+const lodash = require('lodash');
 
 //__ Library
 var app = require('./bin/www').app;
