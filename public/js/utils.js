@@ -6,6 +6,7 @@ $(document).ready(function () {
     $('#btn-launch-game').on('click', function(e) {
         let nameRoom = $('#nameRoom').val();
         startGame(nameRoom);
+        $.getScript("/js/utils.js");
     });
 });
 
