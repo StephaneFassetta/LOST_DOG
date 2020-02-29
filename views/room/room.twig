@@ -16,6 +16,10 @@
         <input type="hidden" id="cardsInGame" data-value="{{ cardsInGame }}">
     </div>
 
+    {% if admin == 0 %}
+        <p id="role"></p>
+    {% endif %}
+
     <div class="head-list-people" style="text-align: center">
         <span id="nameRoom">{{ nameRoom }}</span>
         <span id="ingame-user"></span>/<span id="limit-user"></span>

@@ -11,16 +11,18 @@ $(document).ready(function () {
 
 function refreshInfosUsersAndGame(game)
 {
+    let admin = game.admin;
     let players = game.players;
     let playerLength = game.players.length;
     let gameLimitPlayer = game.size;
 
     $('#list-people').empty();
+    $('#list-people').append('<p style="margin: 5px 5px">' + admin.name + ' (Maître du jeu) <p>');
 
     Object.keys(players).forEach(function (key){
-        let isAdmin = (players[key].isAdmin == 1) ? ' (Maître du jeu)' : '';
-        $('#list-people').append('<p style="margin: 5px 5px">' + players[key].name + isAdmin + '<p>');
+        $('#list-people').append('<p style="margin: 5px 5px">' + players[key].name + '<p>');
     });
+
 
     $('#limit-user').text(gameLimitPlayer);
     $('#ingame-user').text(playerLength);

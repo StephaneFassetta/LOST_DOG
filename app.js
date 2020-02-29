@@ -5,14 +5,14 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const uuidv1 = require('uuid/v1');
-var cookie = require('cookie');
+const cookie = require('cookie');
 const Swal = require('sweetalert2');
 const lodash = require('lodash');
 
 //__ Library
-var app = require('./bin/www').app;
-var io = require('./bin/www').io;
-var socketTools = require('./classes/socketTools')(io);
+const app = require('./bin/www').app;
+const io = require('./bin/www').io;
+const tools = require('./classes/Tools');
 
 //__ Routing
 const indexRouter = require('./routes/index');
@@ -66,18 +66,32 @@ io.on('connection', function(socket) {
         }
     });
 
-    socket.on('createGameRoom', function(game, callbackSuccess)
+    socket.on('createGameRoom', function(game)
     {
         socket.join(game.name);
         roomsActive[game.name] = game;
         console.log('Une room vient d\'être créé. Nom de la room : ' + game.name);
-        callbackSuccess();
+        io.sockets.to(game.name).emit('refreshInfosUsersAndGame', { 'game' : game });
     });
 
     socket.on('startGame', function(nameRoom)
     {
         let gameToStart = roomsActive[nameRoom.name];
-        console.log('La partie ' + gameToStart.name + ' a été lancé ! C\'est parti !');
+
+        if (gameToStart && gameToStart.status == 'lobby' && gameToStart.size == gameToStart.cards.length && gameToStart.size == gameToStart.players.length) {
+            console.log('La partie ' + gameToStart.name + ' a été lancé ! C\'est parti !');
+            gameToStart.status = 'started';
+            tools.shuffleArray(gameToStart.cards);
+
+            gameToStart.players.forEach(function (element, index) {
+                element.role = gameToStart.cards[index];
+            });
+        }
+    });
+
+    socket.on('updateActualGame', function(nameRoom) {
+        const game = roomsActive[Object.keys(roomsActive).find((key) => key === nameRoom.name)];
+        socket.emit('retrieveActualGame', game);
     });
 });
 

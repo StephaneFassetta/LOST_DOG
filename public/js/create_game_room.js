@@ -1,6 +1,6 @@
-import Player from '/classes/Player.js';
 import GameRoom from '/classes/GameRoom.js';
 import Card from "/classes/Card.js";
+import Admin from '/classes/Admin.js';
 import * as ListCards from './cards.js';
 
 $(document).ready(function () {
@@ -11,28 +11,39 @@ $(document).ready(function () {
     const maxPlayerLimit = $('#maxPlayerLimit').val();
     const cardsInGame = JSON.parse(unescape($('#cardsInGame')[0].dataset.value));
 
-
     const gameRoomInfos = {'nameRoom' : nameRoom, 'hasBeenCreate' : hasBeenCreate, 'maxPlayerLimit' : maxPlayerLimit, 'cardsInGame' : cardsInGame};
-    const player = new Player(pseudo, null, socketIo.id, isAdmin);
+    const admin = new Admin(pseudo,  socketIo.id);
     console.log('Ready for create game...');
-    createGameRoom(player, gameRoomInfos);
+    createGameRoom(admin, gameRoomInfos);
 });
 
 
-function createGameRoom(playerInfos, gameRoomInfos)
+function createGameRoom(adminInfos, gameRoomInfos)
 {
-    const gameRoom = new GameRoom(gameRoomInfos.nameRoom, gameRoomInfos.maxPlayerLimit);
+    const gameRoom = new GameRoom(gameRoomInfos.nameRoom, maxPlayerLimit(gameRoomInfos.cardsInGame), adminInfos);
 
-    // TODO : Cree les cartes en fonction du choix dans le menu
+    createCards(gameRoomInfos, gameRoom);
 
+    socketIo.emit('createGameRoom', gameRoom);
+}
 
-    for (let i; i < gameRoomInfos.cardsInGame.length; i++) {
-        for (let x; x < gameRoomInfos.cardsInGame[i].length; x++) {
-            console.log(gameRoomInfos.cardsInGame[i]);
-        }
+function maxPlayerLimit(cardsInGame)
+{
+    let numberTotal = 0;
+
+    for (const number in cardsInGame) {
+        numberTotal = numberTotal + parseInt(cardsInGame[number]);
     }
 
-    socketIo.emit('createGameRoom', gameRoom, function () {
-        socketIo.emit('joinGameRoom', { 'player' : playerInfos, 'name' : gameRoomInfos.nameRoom });
-    });
+    return numberTotal;
+}
+
+function createCards(gameRoomInfos, gameRoom) {
+    const totalCard = Object.getOwnPropertyNames(gameRoomInfos.cardsInGame).length;
+
+    for (let i = 1; i <= totalCard; i++) {
+        for (let x = 0; x < gameRoomInfos.cardsInGame[i]; x++) {
+            gameRoom.cards.push(new Card(i, ListCards.default[i - 1].role, ListCards.default[i - 1].description));
+        }
+    }
 }
