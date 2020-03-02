@@ -41,6 +41,7 @@ io.on('connection', function(socket) {
     {
         if (socket.game) {
             const gameExist = socket.game;
+            const playerLeave = gameExist.players.find((player) => player.socketId === socket.id);
 
             Object.keys(gameExist.players).forEach(function(key) {
                 if (gameExist.players[key].socketId == socket.id) {
@@ -49,7 +50,7 @@ io.on('connection', function(socket) {
                 }
             });
 
-            io.sockets.to(gameExist.name).emit('refreshInfosUsersAndGame', { 'game' : gameExist });
+            io.sockets.to(gameExist.name).emit('refreshInfosUsersAndGame', { 'game' : gameExist, 'user' : playerLeave, 'event' : 'disconnectToGame'});
         }
     });
 
@@ -62,7 +63,7 @@ io.on('connection', function(socket) {
             gameExist.players.push(dataRoom.player);
             console.log('Vous avez rejoins une room. Nom de la room : ' + dataRoom.name);
             socket.game = gameExist;
-            io.sockets.to(gameExist.name).emit('refreshInfosUsersAndGame', { 'game' : gameExist });
+            io.sockets.to(gameExist.name).emit('refreshInfosUsersAndGame', { 'game' : gameExist, 'user' : dataRoom.player, 'event' : 'joinGameRoom'});
         }
     });
 
@@ -71,7 +72,7 @@ io.on('connection', function(socket) {
         socket.join(game.name);
         roomsActive[game.name] = game;
         console.log('Une room vient d\'être créé. Nom de la room : ' + game.name);
-        io.sockets.to(game.name).emit('refreshInfosUsersAndGame', { 'game' : game });
+        io.sockets.to(game.name).emit('refreshInfosUsersAndGame', { 'game' : game, 'user' : game.admin, 'event' : 'createGameRoom'});
     });
 
     socket.on('startGame', function(nameRoom)

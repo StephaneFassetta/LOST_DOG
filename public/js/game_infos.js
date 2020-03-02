@@ -1,0 +1,40 @@
+import * as tools from './tools.js';
+
+socketIo.on('refreshInfosUsersAndGame', function(gameInfos) {
+    refreshInfosUsersAndGame(gameInfos.game);
+    tools.addLogInChat(gameInfos);
+});
+
+$(document).ready(function () {
+
+});
+
+function refreshInfosUsersAndGame(game)
+{
+    let admin = game.admin;
+    let players = game.players;
+    let playerLength = game.players.length;
+    let gameLimitPlayer = game.size;
+
+    $('#list-people').empty();
+    $('#list-people').append('<p style="margin: 5px 5px">' + admin.name + ' (Maître du jeu) <p>');
+
+    Object.keys(players).forEach(function (key){
+        $('#list-people').append('<p style="margin: 5px 5px">' + players[key].name + '<p>');
+    });
+
+
+    $('#limit-user').text(gameLimitPlayer);
+    $('#ingame-user').text(playerLength);
+
+    showButtonLaunchGame(gameLimitPlayer, playerLength);
+}
+
+function showButtonLaunchGame(gameLimitPlayer, playerLength)
+{
+    if (gameLimitPlayer == playerLength) {
+        $('#btn-launch-game').show();
+    } else {
+        $('#btn-launch-game').hide();
+    }
+}
