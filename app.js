@@ -86,12 +86,14 @@ io.on('connection', function(socket) {
             gameToStart.players.forEach(function (element, index) {
                 element.role = gameToStart.cards[index];
             });
+
+            io.sockets.to(gameToStart.name).emit('launchGame', gameToStart);
         }
     });
 
     socket.on('updateActualGame', function(nameRoom) {
         const game = roomsActive[Object.keys(roomsActive).find((key) => key === nameRoom.name)];
-        socket.emit('retrieveActualGame', game);
+        io.sockets.to(game.name).emit('retrieveActualGame', game);
     });
 });
 

@@ -3,11 +3,7 @@ socketIo.on('refreshInfosUsersAndGame', function(game) {
 });
 
 $(document).ready(function () {
-    $('#btn-launch-game').on('click', function(e) {
-        let nameRoom = $('#nameRoom').val();
-        startGame(nameRoom);
-        $.getScript("/js/utils.js");
-    });
+
 });
 
 function refreshInfosUsersAndGame(game)
@@ -38,9 +34,4 @@ function showButtonLaunchGame(gameLimitPlayer, playerLength)
     } else {
         $('#btn-launch-game').hide();
     }
-}
-
-function startGame(nameRoom)
-{
-    socketIo.emit('startGame', { 'name' : nameRoom });
 }

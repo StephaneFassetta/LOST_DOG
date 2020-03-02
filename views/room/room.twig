@@ -17,7 +17,7 @@
     </div>
 
     {% if admin == 0 %}
-        <p id="role"></p>
+        <p id="role"> Votre rôle est : </p>
     {% endif %}
 
     <div class="head-list-people" style="text-align: center">
@@ -37,18 +37,11 @@
             <div class="panel panel-primary">
                 <div class="panel">
                     <div class="panel-body">
-                        <ul class="chat">
-                        </ul>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="input-group">
-                            <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                            <span class="input-group-btn">
-                                <button class="btn btn-warning btn-sm" id="btn-chat">
-                                    Send
-                                </button>
-                            </span>
-                        </div>
+                        {% if admin == 1 %}
+                            <ul class="chat">
+
+                            </ul>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -58,8 +51,8 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="module" src="/js/in_game.js"></script>
     <script type="module" src="/js/utils.js"></script>
+    <script type="module" src="/js/start_game.js"></script>
 
     {% if hasBeenCreate  == '1' %}
         <script type="module" src="/js/create_game_room.js"></script>

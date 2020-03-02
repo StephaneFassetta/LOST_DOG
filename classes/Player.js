@@ -7,7 +7,6 @@ class Player {
         this.role = role;
         this.alive = true;
     }
-
 };
 
 export default Player;
