@@ -8,17 +8,27 @@ $(document).ready(function(){
             alert('Pour crée une partie il faut rentrer un nom ET un pseudo !')
         } else {
             let cardsLength = $('.counter_card').length;
+            let atLeastOneCard = false;
             let cardsInGame = {};
 
             for (let i = 1; i <= cardsLength; i++) {
-                let value = $('#card_' + i).val();
+                let value = parseInt($('#card_' + i).val());
+
+                if (value > 0) {
+                    atLeastOneCard = true;
+                }
+
                 let id_card = i;
                 cardsInGame[id_card] = value;
             }
 
-            $('<input type="hidden" name="cardsInGame"/>').val(JSON.stringify(cardsInGame)).appendTo('#role-in-game');
-            $('#formCreateRoom').attr('action', 'room/' + nameRoom);
-            $('#formCreateRoom').submit();
+            if (atLeastOneCard) {
+                $('<input type="hidden" name="cardsInGame"/>').val(JSON.stringify(cardsInGame)).appendTo('#role-in-game');
+                $('#formCreateRoom').attr('action', 'room/' + nameRoom);
+                $('#formCreateRoom').submit();
+            } else {
+                alert('Sélectionner au moins UN rôle !')
+            }
         }
     });
 
@@ -67,4 +77,8 @@ $(document).ready(function(){
             }
         });
     });
+
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
 });

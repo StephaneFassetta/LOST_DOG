@@ -110,3 +110,38 @@ a {
 .card-counter {
   text-align: center;
 }
+
+.btn-circle {
+  width: 26px;
+  height: 20px;
+  padding: 6px 0px;
+  border-radius: 15px !important;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
+}
+
+.choice-role {
+  text-align: center;
+  margin-bottom: 6%;
+}
+
+.row-card {
+  width: 50%;
+  margin-left: 0% !important;
+  margin-right: 0% !important;
+  margin-bottom: 3%;
+}
+
+.btn-incremented-counter {
+  margin-right: 2%;
+}
+
+.btn-decremented-counter {
+  margin-right: 2%;
+}
+
+.title-menu {
+  font-size: 15px;
+  text-align: center;
+}

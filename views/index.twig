@@ -11,16 +11,42 @@
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Crée une nouvelle partie de chien perdu</h5>
+                            <h5 class="card-title title-menu">CREE UNE NOUVELLE PARTIE</h5>
                             <a role="button" class="btn btn-primary btn-lg btn-block mainButton" id="createRoom">Crée une partie</a>
 
                             <form action="" method="post" id="formCreateRoom">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Nom de votre partie (ex : Partie entre amis)" aria-label="nameRoom" id="nameRoom" name="nameRoom" aria-describedby="basic-addon1">
                                 </div>
+
                                 <div class="input-group mb-3" style="width: 60%; margin: auto;">
                                     <input type="text" class="form-control" placeholder="Votre pseudo durant la partie" aria-label="pseudoToCreate" name="pseudo" id="pseudoForCreate" class aria-describedby="basic-addon1">
                                 </div>
+
+                                <h5 class="card-title title-menu">CHOISISSEZ LES CARTES QUI SERONT DISPONIBLES</h5>
+                                <div class="card-group">
+                                    {% for key, cards in cardsRole %}
+                                        <div class="row row-card">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="choice-role">
+                                                        <h5 class="card-title" style="display: inline">{{ cards.role }}</h5>
+                                                        <button type="button" class="btn btn-dark btn-circle btn-circle-sm m-1" data-container="body" data-toggle="popover" data-placement="top" data-content="{{ cards.description }}" style="line-height: 0;">
+                                                            ?
+                                                        </button>
+                                                    </div>
+                                                    <div class="card-counter" id="card-counter-{{ cards.id }}">
+                                                        <button type="button" class="btn-incremented-counter btn" data-children-input="card_{{ cards.id }}">+</button>
+                                                        <button type="button" class="btn-decremented-counter btn" data-children-input="card_{{ cards.id }}">-</button>
+                                                        <input style="width: 20%; text-align: center" class="counter_card" id="card_{{ cards.id }}" type="text" value="0"/>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <h5 class="card-title title-menu">Invitez vos amis en leurs donnant le nom de la partie !</h5>
                                 <div id="role-in-game">
                                 </div>
                                 <input type="hidden" id="newRoom" name="newRoom" aria-describedby="basic-addon1" value="1">
@@ -32,7 +58,7 @@
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Rejoins une partie avec tes amis</h5>
+                            <h5 class="card-title title-menu">REJOINDRE UNE PARTIE</h5>
                             <a role="button" class="btn btn-secondary btn-lg btn-block mainButton" id="joinRoom">Rejoindre une partie</a>
 
                             <form action="" method="post" id="formJoinRoom">
@@ -49,19 +75,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="card-group">
-    {% for key, cards in cardsRole %}
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ cards.role }}</h5>
-                <p class="card-text">{{ cards.description }}</p>
-                <div class="card-counter" id="card-counter-{{ cards.id }}">
-                    <button type="button" class="btn-incremented-counter btn" data-children-input="card_{{ cards.id }}">+</button><input style="width: 20%; text-align: center" class="counter_card" id="card_{{ cards.id }}" type="text" value="0"/><button type="button" class="btn-decremented-counter btn" data-children-input="card_{{ cards.id }}">-</button>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
     </div>
 {% endblock %}
 
