@@ -5,8 +5,8 @@ router.get('/story', function(req, res, next) {
     res.render('settings/story');
 });
 
-router.get('/roles', function(req, res, next) {
-    res.render('settings/roles');
+router.get('/deroulement', function(req, res, next) {
+    res.render('settings/deroulement');
 });
 
 module.exports = router;
