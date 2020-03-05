@@ -1,6 +1,7 @@
 body {
   padding: 100px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #30333c !important;
 }
 
 a {
@@ -12,7 +13,9 @@ a {
 }
 
 .mainButton {
-  margin: auto auto 3%;
+  margin: auto;
+  width: 20%;
+  background-color: #8e1a1a !important;
 }
 
 .head-list-people {

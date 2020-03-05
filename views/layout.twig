@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>THE LOST DOG</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
         {% block stylsheets %}
             <link rel='stylesheet' href='/stylesheets/style.css' />
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -13,23 +14,23 @@
 
     <body>
         {% block navbar %}
-        <nav class="navbar navbar-expand-md flex-column fixed-top navbar-dark bg-dark">
-            <a class="navbar-brand align-self-center m-0 pb-3 position-md-absolute pb-md-0" href="/">THE LOST DOG</a>
+{#        <nav class="navbar navbar-expand-md flex-column fixed-top navbar-dark bg-dark">#}
+{#            <a class="navbar-brand align-self-center m-0 pb-3 position-md-absolute pb-md-0" href="/">THE LOST DOG</a>#}
 
-            <div class="collapse navbar-collapse justify-content-md-center w-100" id="navbarNav">
-                <ul class="navbar-nav text-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/settings/story">Histoire</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/settings/deroulement">Déroulement</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+{#            <div class="collapse navbar-collapse justify-content-md-center w-100" id="navbarNav">#}
+{#                <ul class="navbar-nav text-center">#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="/">Accueil</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="/settings/story">Histoire</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="/settings/deroulement">Déroulement</a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
+{#        </nav>#}
         {% endblock %}
         {% block body %}{% endblock %}
     </body>
