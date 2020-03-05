@@ -5,6 +5,22 @@ body {
     background-color: #23282b !important; /* fallback for old browsers */
 }
 
+.counter_card {
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+.card {
+
+    display: flex;
+    width: 7em;
+    height: 11.5em;
+    padding: 1em;
+    font-size: 1.1em;
+    margin: 0.5em;
+}
+
 .main-menu-label {
     color: #d6cccc;
     font-size: 20px;
@@ -156,6 +172,7 @@ input[type=text] {
 
 .card-counter {
   text-align: center;
+  width: 100%;
 }
 
 .btn-circle {
@@ -174,18 +191,25 @@ input[type=text] {
 }
 
 .row-card {
-  width: 50%;
-  margin-left: 0% !important;
+  width: 16%;
   margin-right: 0% !important;
   margin-bottom: 3%;
 }
 
 .btn-incremented-counter {
-  margin-right: 2%;
+  float: left;
+}
+
+.btn-card-counter {
+    margin-right: 2%;
+    display: inline;
+    font-size: 40px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .btn-decremented-counter {
-  margin-right: 2%;
+  float: right;
 }
 
 .title-menu {
