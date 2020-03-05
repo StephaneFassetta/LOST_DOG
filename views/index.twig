@@ -5,17 +5,23 @@
 {% endblock %}
 
 {% block body %}
-        <div class="container">
+    <div class="container">
+        <div class="group-button-game">
             <div class="row">
-                <a role="button" class="btn btn-lg mainButton" id="createRoom">CREE UNE PARTIE</a>
-                <form action="" method="post" id="formCreateRoom">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Nom de votre partie (ex : Partie entre amis)" aria-label="nameRoom" id="nameRoom" name="nameRoom" aria-describedby="basic-addon1">
-                    </div>
+                <a role="button" class="btn btn-lg main-button" id="createRoom">CREE UNE PARTIE</a>
 
-                    <div class="input-group mb-3" style="width: 60%; margin: auto;">
-                        <input type="text" class="form-control" placeholder="Votre pseudo durant la partie" aria-label="pseudoToCreate" name="pseudo" id="pseudoForCreate" class aria-describedby="basic-addon1">
-                    </div>
+                <form action="" method="post" id="formCreateRoom">
+                    <label for="name" class="main-menu-label">Name
+                        <span>
+                            <input type="text" class="form-control" aria-label="nameRoom" id="nameRoom" name="nameRoom" aria-describedby="basic-addon1">
+                        </span>
+                    </label>
+
+                    <label for="pseudo" class="main-menu-label">Pseudo
+                        <span>
+                            <input type="text" class="form-control" aria-label="pseudoToCreate" name="pseudo" id="pseudoForCreate" class aria-describedby="basic-addon1">
+                        </span>
+                    </label>
 
                     <h5 class="card-title title-menu">CHOISISSEZ LES CARTES QUI SERONT DISPONIBLES</h5>
                     <div class="card-group">
@@ -47,7 +53,7 @@
             </div>
 
             <div class="row">
-                <a role="button" class="btn btn-lg mainButton" id="joinRoom">REJOINDRE UNE PARTIE</a>
+                <a role="button" class="btn btn-lg main-button" id="joinRoom">REJOINDRE UNE PARTIE</a>
                 <form action="" method="post" id="formJoinRoom">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Nom de la partie à rejoindre (ex : Partie entre amis)" aria-label="roomToJoin" id="roomToJoin" aria-describedby="basic-addon1">
@@ -59,6 +65,7 @@
                 </form>
             </div>
         </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

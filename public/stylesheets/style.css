@@ -1,21 +1,65 @@
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
 body {
-  padding: 100px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: #30333c !important;
+    min-height: 100vh;
+    background-color: #23282b !important; /* fallback for old browsers */
 }
 
-a {
-  color: #00B7FF;
+.main-menu-label {
+    color: #d6cccc;
+    font-size: 20px;
+    display: block !important;
+    margin-bottom: 5%;
+}
+
+.main-menu-label span input {
+    height: 3em;
+}
+
+#logo {
+    width: 20%;
+    margin-right: 15%;
+    margin-top: 5%;
+}
+
+.container-logo {
+    text-align: center;
+}
+
+.group-button-game {
+    padding: 3%;
+    margin-top: 7%;
+    line-height: 1em;
+}
+
+.main-button {
+    margin: auto auto 2%;
+    color: #c4c4c4 !important;
+    min-width: 50%;
+    max-width: 70%;
+    width: 50%;
+    line-height: 4em !important;
+    background-color: #e20101b0 !important;
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow: 3px 3px 2px 0px #13030391
+}
+
+input[type=text] {
+    background-color: transparent;
+    border: 1px solid #464552;
+    caret-color: gray;
+    margin: 0.5em 0 1em 0;
+    color: gray;
+    padding: 0.9em;
+    height: 1.2em;
+    width: 12em;
+    border-radius: 5px;
+    font-size: 1.1em;
 }
 
 #name{
   margin: auto 75px;
-}
-
-.mainButton {
-  margin: auto;
-  width: 20%;
-  background-color: #8e1a1a !important;
 }
 
 .head-list-people {

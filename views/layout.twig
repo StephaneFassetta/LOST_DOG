@@ -2,47 +2,32 @@
 <html>
     <head>
         <title>THE LOST DOG</title>
-        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block stylsheets %}
             <link rel='stylesheet' href='/stylesheets/style.css' />
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
         {% endblock %}
     </head>
 
     <body>
-        {% block navbar %}
-{#        <nav class="navbar navbar-expand-md flex-column fixed-top navbar-dark bg-dark">#}
-{#            <a class="navbar-brand align-self-center m-0 pb-3 position-md-absolute pb-md-0" href="/">THE LOST DOG</a>#}
-
-{#            <div class="collapse navbar-collapse justify-content-md-center w-100" id="navbarNav">#}
-{#                <ul class="navbar-nav text-center">#}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link" href="/">Accueil</a>#}
-{#                    </li>#}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link" href="/settings/story">Histoire</a>#}
-{#                    </li>#}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link" href="/settings/deroulement">Déroulement</a>#}
-{#                    </li>#}
-{#                </ul>#}
-{#            </div>#}
-{#        </nav>#}
-        {% endblock %}
-        {% block body %}{% endblock %}
+    {% block body %}
+    {% endblock %}
     </body>
 
-    {% block javascripts %}
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="/js/custom.js"></script>
-        <script>
-            var socketIo = io();
-        </script>
+    <footer>
+     {% block footer %}
+        {% block javascripts %}
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+            <script src="/socket.io/socket.io.js"></script>
+            <script src="/js/custom.js"></script>
+            <script>
+                var socketIo = io();
+            </script>
+        {% endblock %}
     {% endblock %}
+    </footer>
 </html>
