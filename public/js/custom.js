@@ -12,7 +12,7 @@ $(document).ready(function(){
             let cardsInGame = {};
 
             for (let i = 1; i <= cardsLength; i++) {
-                let value = parseInt($('#card_' + i).val());
+                let value = parseInt($('#card_' + i).text());
 
                 if (value > 0) {
                     atLeastOneCard = true;
@@ -47,16 +47,16 @@ $(document).ready(function(){
 
     $('.btn-incremented-counter').on('click', function(e) {
         let childrenInput = $('#' + e.currentTarget.dataset.childrenInput);
-        let valueChildren =  parseInt(childrenInput.val());
-        childrenInput.val(valueChildren + 1);
+        let valueChildren =  parseInt(childrenInput.text());
+        childrenInput.text(valueChildren + 1);
     });
 
     $('.btn-decremented-counter').on('click', function(e) {
         let childrenInput = $('#' + e.currentTarget.dataset.childrenInput);
-        let valueChildren =  parseInt(childrenInput.val());
+        let valueChildren =  parseInt(childrenInput.text());
 
         if (valueChildren != 0) {
-            childrenInput.val(valueChildren - 1);
+            childrenInput.text(valueChildren - 1);
         }
     });
 
