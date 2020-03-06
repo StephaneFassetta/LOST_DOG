@@ -49,6 +49,6 @@ const cards = [
         "role": "Jack l'égorgeur",
         "description": "Jack est solitaire. Son but est de tuer quiconque se mettra sur sa route. <br> Chaque nuit il choisit une personne a tuer, son objectif est d'être le dernier en vie."
     }
-]
+];
 
 export default cards;

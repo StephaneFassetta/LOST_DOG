@@ -7,62 +7,76 @@
 {% block body %}
     <div class="container">
         <div class="group-button-game">
-            <div class="row">
+            <div class="row main-menu-row">
                 <a role="button" class="btn btn-lg main-button" id="createRoom">CREE UNE PARTIE</a>
 
-                <form action="" method="post" id="formCreateRoom">
-                    <label for="name" class="main-menu-label">Name
-                        <span>
-                            <input type="text" class="form-control" aria-label="nameRoom" id="nameRoom" name="nameRoom" aria-describedby="basic-addon1">
-                        </span>
-                    </label>
+                <div>
+                    <form action="" method="post" id="formCreateRoom">
+                        <label for="name" class="main-menu-label">NOM DE LA PARTIE
+                            <span>
+                                <input type="text" class="form-control" aria-label="nameRoom" id="nameRoom" name="nameRoom" aria-describedby="basic-addon1">
+                                <p class="game-name-error"></p>
+                            </span>
+                        </label>
 
-                    <label for="pseudo" class="main-menu-label">Pseudo
-                        <span>
-                            <input type="text" class="form-control" aria-label="pseudoToCreate" name="pseudo" id="pseudoForCreate" class aria-describedby="basic-addon1">
-                        </span>
-                    </label>
+                        <label for="pseudo" class="main-menu-label">PSEUDO
+                            <span>
+                                <input type="text" class="form-control" aria-label="pseudoToCreate" name="pseudo" id="pseudoForCreate" class aria-describedby="basic-addon1">
+                                <p class="player-name-error"></p>
+                            </span>
+                        </label>
 
-                    <h5 class="card-title title-menu">CHOISISSEZ LES CARTES QUI SERONT DISPONIBLES</h5>
-                    <div class="card-group">
-                        {% for key, cards in cardsRole %}
-                            <div class="row row-card">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="choice-role">
-                                            <h5 class="card-title" style="display: inline">{{ cards.role }}</h5>
-                                            <i title="Description" data-toggle="popover" data-placement="top" data-content="{{ cards.description }}" class="fa fa-question-circle" aria-hidden="true" data-html="true"></i>
-                                        </div>
-                                        <div class="card-counter" id="card-counter-{{ cards.id }}">
-                                            <p class="counter_card" id="card_{{ cards.id }}" type="text" value="0">0</p>
-                                            <p class="btn-incremented-counter btn-card-counter" data-children-input="card_{{ cards.id }}">+</p>
-                                            <p class="btn-decremented-counter btn-card-counter" data-children-input="card_{{ cards.id }}">-</p>
+                        <label for="card-group" class="main-menu-label">CHOISISSEZ LES CARTES QUI SERONT DISPONIBLES</label>
 
+                        <div class="card-group">
+                            {% for key, cards in cardsRole %}
+                                <div class="row row-card">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="choice-role">
+                                                <p class="card-title">{{ cards.role }}</p>
+                                                <i title="Description" data-toggle="popover" data-placement="top" data-content="{{ cards.description }}" class="fa fa-question-circle" aria-hidden="true" data-html="true"></i>
+                                            </div>
+                                            <div class="card-counter" id="card-counter-{{ cards.id }}">
+                                                <p class="counter_card" id="card_{{ cards.id }}" type="text" value="0">0</p>
+                                                <p class="btn-incremented-counter btn-card-counter" data-children-input="card_{{ cards.id }}">+</p>
+                                                <p class="btn-decremented-counter btn-card-counter" data-children-input="card_{{ cards.id }}">-</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
-                    </div>
+                            {% endfor %}
+                            <p class="card-error"></p>
+                        </div>
 
-                    <div id="role-in-game">
-                    </div>
+                        <div id="role-in-game">
+                        </div>
 
-                    <input type="hidden" id="newRoom" name="newRoom" aria-describedby="basic-addon1" value="1">
-                </form>
+                        <input type="hidden" id="newRoom" name="newRoom" aria-describedby="basic-addon1" value="1">
+                    </form>
+                </div>
             </div>
 
-            <div class="row">
+            <div class="row main-menu-row">
                 <a role="button" class="btn btn-lg main-button" id="joinRoom">REJOINDRE UNE PARTIE</a>
-                <form action="" method="post" id="formJoinRoom">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Nom de la partie à rejoindre (ex : Partie entre amis)" aria-label="roomToJoin" id="roomToJoin" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Votre pseudo durant la partie" aria-label="pseudoToJoin" name="pseudo" id="pseudoForJoin" aria-describedby="basic-addon1">
-                    </div>
-                    <input type="hidden" id="joinRoom" name="joinRoom" aria-describedby="basic-addon1" value="1">
-                </form>
+                <div>
+                    <form action="" method="post" id="formJoinRoom">
+                        <label for="name" class="main-menu-label">Nom de la partie
+                            <span>
+                                <input type="text" class="form-control" aria-label="nameRoom" id="nameRoom" name="nameRoom" aria-describedby="basic-addon1">
+                                <p class="game-name-error"></p>
+                            </span>
+                        </label>
+
+                        <label for="pseudo" class="main-menu-label">Pseudo
+                            <span>
+                                <input type="text" class="form-control" aria-label="pseudoToCreate" name="pseudo" id="pseudoForCreate" class aria-describedby="basic-addon1">
+                                <p class="player-name-error"></p>
+                            </span>
+                        </label>
+                        <input type="hidden" id="joinRoom" name="joinRoom" aria-describedby="basic-addon1" value="1">
+                    </form>
+                </div>
             </div>
         </div>
     </div>

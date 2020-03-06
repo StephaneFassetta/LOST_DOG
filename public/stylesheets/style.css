@@ -2,23 +2,12 @@
 
 body {
     min-height: 100vh;
-    background-color: #23282b !important; /* fallback for old browsers */
-}
-
-.counter_card {
-    width: 100%;
     text-align: center;
-    display: block;
+    background: linear-gradient(180deg, rgba(33, 38, 41, 0.96) 18%, rgb(39, 37, 37) 100%);
 }
 
-.card {
-
-    display: flex;
-    width: 7em;
-    height: 11.5em;
-    padding: 1em;
-    font-size: 1.1em;
-    margin: 0.5em;
+.main-menu-row {
+    display: block !important;
 }
 
 .main-menu-label {
@@ -26,26 +15,17 @@ body {
     font-size: 20px;
     display: block !important;
     margin-bottom: 5%;
+    text-align: left;
 }
 
 .main-menu-label span input {
     height: 3em;
 }
 
-#logo {
-    width: 20%;
-    margin-right: 15%;
-    margin-top: 5%;
-}
-
-.container-logo {
-    text-align: center;
-}
-
 .group-button-game {
-    padding: 3%;
-    margin-top: 7%;
+    padding: 6%;
     line-height: 1em;
+    text-align: center;
 }
 
 .main-button {
@@ -55,10 +35,10 @@ body {
     max-width: 70%;
     width: 50%;
     line-height: 4em !important;
-    background-color: #e20101b0 !important;
+    background-color: #801414b5 !important;
     -moz-box-shadow:    3px 3px 5px 6px #ccc;
     -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-    box-shadow: 3px 3px 2px 0px #13030391
+    box-shadow: 3px 3px 2px 0px #13030391;
 }
 
 input[type=text] {
@@ -74,132 +54,6 @@ input[type=text] {
     font-size: 1.1em;
 }
 
-#name{
-  margin: auto 75px;
-}
-
-.head-list-people {
-  background: #f8f8f8 none repeat scroll 0 0;
-  float: left;
-  overflow: hidden;
-  width: 28%;
-  border-right: 1px solid #c4c4c4;
-}
-
-.list-people {
-  height: 507px;
-  overflow-y: scroll;
-}
-
-#story {
-  margin: 4%;
-}
-
-.chat
-{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.chat li
-{
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  border-bottom: 1px dotted #B3A9A9;
-}
-
-.chat li.left .chat-body
-{
-  margin-left: 60px;
-}
-
-.chat li.right .chat-body
-{
-  margin-right: 60px;
-}
-
-
-.chat li .chat-body p
-{
-  margin: 0;
-  color: #777777;
-}
-
-.panel .slidedown .glyphicon, .chat .glyphicon
-{
-  margin-right: 5px;
-}
-
-.panel-body
-{
-  overflow-y: scroll;
-  height: 533px;
-}
-
-::-webkit-scrollbar-track
-{
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  background-color: #F5F5F5;
-}
-
-::-webkit-scrollbar
-{
-  width: 12px;
-  background-color: #F5F5F5;
-}
-
-::-webkit-scrollbar-thumb
-{
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-  background-color: #555;
-}
-
-.panel-primary {
-  width: 100%;
-  margin-left: 15%;
-}
-
-.panel-footer {
-  margin-top: 2%;
-}
-
-#btn-launch-game {
-  margin-bottom: 3%;
-  margin-top: 3%;
-  display: none;
-}
-
-.card-counter {
-  text-align: center;
-  width: 100%;
-}
-
-.btn-circle {
-  width: 26px;
-  height: 20px;
-  padding: 6px 0px;
-  border-radius: 15px !important;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.42857;
-}
-
-.choice-role {
-  text-align: center;
-  margin-bottom: 6%;
-}
-
-.row-card {
-  width: 16%;
-  margin-right: 0% !important;
-  margin-bottom: 3%;
-}
-
-.btn-incremented-counter {
-  float: left;
-}
-
 .btn-card-counter {
     margin-right: 2%;
     display: inline;
@@ -208,11 +62,39 @@ input[type=text] {
     user-select: none;
 }
 
+.btn-incremented-counter {
+  float: left;
+}
+
 .btn-decremented-counter {
   float: right;
 }
 
-.title-menu {
-  font-size: 15px;
-  text-align: center;
+.counter_card {
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+.card {
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    margin: 0.3em;
+    background-color: #393a40;
+    color: #b5a1a1;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    border-radius: 0px !important;
+    user-select: none;
+    width: 165px;
+}
+
+.card-group {
+    height: 250px;
+}
+
+.card-title {
+    font-size: 1em;
+    float: left;
+    display: block;
 }
