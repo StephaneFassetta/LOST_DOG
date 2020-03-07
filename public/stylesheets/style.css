@@ -57,15 +57,16 @@ input[type=text] {
 .btn-card-counter {
     margin-right: 2%;
     display: inline;
-    font-size: 40px;
+    font-size: 50px;
     cursor: pointer;
     user-select: none;
 }
 
 .counter-card {
-    width: 10%;
-    text-align: center;
+    width: 100%;
+    text-align: left;
     display: block;
+    font-size: 30px;
 }
 
 .card {
@@ -73,24 +74,28 @@ input[type=text] {
     cursor: pointer;
     position: relative;
     margin: 0.3em;
-    background-color: #393a40;
+    background-color: #393a40 !important;
     color: #b5a1a1;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
-    border-radius: 0px !important;
     user-select: none;
     width: 157px;
     height: 100%;
 }
 
+.card:hover {
+    background-color: #55565c !important;
+}
+
 .row-card {
-    height: 190px;
+    height: 214px;
     margin-bottom: 1%;
 }
 
 .card-title {
-    font-size: 1em;
-    float: left;
+    font-size: 15px;
     display: block;
+    text-align: left;
+    font-weight: bold;
 }
 
 .card-body {
@@ -105,7 +110,6 @@ input[type=text] {
     float: right;
     margin-right: 4%;
 }
-
 
 .card-body {
     display: flex;
