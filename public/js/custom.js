@@ -60,6 +60,8 @@ $(document).ready(function(){
         }
     });
 
+    $('.question-mark').tooltip();
+
     $(function(){
         let page = window.location.pathname;
 

@@ -30,14 +30,13 @@
 
                         <label for="card-group" class="main-menu-label">CHOISISSEZ LES CARTES QUI SERONT DISPONIBLES</label>
 
-
                         <div class="row card-list">
                             {% for key, cards in cardsRole %}
                                 <div class="row-card">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="card-top">
-                                                <p class="card-title">{{ cards.role }}</p>
+                                                <p class="card-title">{{ cards.role }}<i data-toggle="tooltip" data-html="true" data-placement="top" title="{{ cards.description }}" style="margin-left: 5%" class="question-mark fa fa-question-circle" aria-hidden="true"></i></p>
                                                 <p class="btn-incremented-counter btn-card-counter" data-children-input="card_{{ cards.id }}">+</p>
                                                 <p class="counter-card" id="card_{{ cards.id }}" type="text" value="0">0</p>
                                             </div>
