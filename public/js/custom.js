@@ -7,7 +7,7 @@ $(document).ready(function(){
         if (nameRoom == '' || pseudo == '') {
             alert('Pour crée une partie il faut rentrer un nom ET un pseudo !')
         } else {
-            let cardsLength = $('.counter_card').length;
+            let cardsLength = $('.counter-card').length;
             let atLeastOneCard = false;
             let cardsInGame = {};
 

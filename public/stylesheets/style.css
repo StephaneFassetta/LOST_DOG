@@ -62,16 +62,8 @@ input[type=text] {
     user-select: none;
 }
 
-.btn-incremented-counter {
-  float: left;
-}
-
-.btn-decremented-counter {
-  float: right;
-}
-
-.counter_card {
-    width: 100%;
+.counter-card {
+    width: 10%;
     text-align: center;
     display: block;
 }
@@ -86,15 +78,37 @@ input[type=text] {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
     border-radius: 0px !important;
     user-select: none;
-    width: 165px;
+    width: 157px;
+    height: 100%;
 }
 
-.card-group {
-    height: 250px;
+.row-card {
+    height: 190px;
+    margin-bottom: 1%;
 }
 
 .card-title {
     font-size: 1em;
     float: left;
     display: block;
+}
+
+.card-body {
+    padding: 5% !important;
+}
+
+.btn-incremented-counter {
+    float: right;
+}
+
+.btn-decremented-counter {
+    float: right;
+    margin-right: 4%;
+}
+
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

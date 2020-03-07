@@ -12,34 +12,36 @@
 
                 <div>
                     <form action="" method="post" id="formCreateRoom">
-                        <label for="name" class="main-menu-label">NOM DE LA PARTIE
-                            <span>
-                                <input type="text" class="form-control" aria-label="nameRoom" id="nameRoom" name="nameRoom" aria-describedby="basic-addon1">
-                                <p class="game-name-error"></p>
-                            </span>
-                        </label>
+                        <div>
+                            <label for="name" class="main-menu-label">NOM DE LA PARTIE
+                                <span>
+                                    <input type="text" class="form-control" aria-label="nameRoom" id="nameRoom" name="nameRoom" aria-describedby="basic-addon1">
+                                    <p class="game-name-error"></p>
+                                </span>
+                            </label>
 
-                        <label for="pseudo" class="main-menu-label">PSEUDO
-                            <span>
-                                <input type="text" class="form-control" aria-label="pseudoToCreate" name="pseudo" id="pseudoForCreate" class aria-describedby="basic-addon1">
-                                <p class="player-name-error"></p>
-                            </span>
-                        </label>
+                            <label for="pseudo" class="main-menu-label">PSEUDO
+                                <span>
+                                    <input type="text" class="form-control" aria-label="pseudoToCreate" name="pseudo" id="pseudoForCreate" class aria-describedby="basic-addon1">
+                                    <p class="player-name-error"></p>
+                                </span>
+                            </label>
+                        </div>
 
                         <label for="card-group" class="main-menu-label">CHOISISSEZ LES CARTES QUI SERONT DISPONIBLES</label>
 
-                        <div class="card-group">
+
+                        <div class="row card-list">
                             {% for key, cards in cardsRole %}
-                                <div class="row row-card">
+                                <div class="row-card">
                                     <div class="card">
                                         <div class="card-body">
-                                            <div class="choice-role">
+                                            <div class="card-top">
                                                 <p class="card-title">{{ cards.role }}</p>
-                                                <i title="Description" data-toggle="popover" data-placement="top" data-content="{{ cards.description }}" class="fa fa-question-circle" aria-hidden="true" data-html="true"></i>
-                                            </div>
-                                            <div class="card-counter" id="card-counter-{{ cards.id }}">
-                                                <p class="counter_card" id="card_{{ cards.id }}" type="text" value="0">0</p>
                                                 <p class="btn-incremented-counter btn-card-counter" data-children-input="card_{{ cards.id }}">+</p>
+                                                <p class="counter-card" id="card_{{ cards.id }}" type="text" value="0">0</p>
+                                            </div>
+                                            <div class="card-bottom" id="card-counter-{{ cards.id }}">
                                                 <p class="btn-decremented-counter btn-card-counter" data-children-input="card_{{ cards.id }}">-</p>
                                             </div>
                                         </div>
