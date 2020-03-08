@@ -32,8 +32,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/classes', express.static(path.join(__dirname, 'classes')));
-app.use('/fa/css', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/css')));
-app.use('/fa/js', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/js')));
 
 
 io.on('connection', function(socket) {

@@ -54,6 +54,10 @@ input[type=text] {
     font-size: 1.1em;
 }
 
+input:focus {
+    background-color: transparent !important;
+}
+
 .btn-card-counter {
     margin-right: 2%;
     display: inline;
