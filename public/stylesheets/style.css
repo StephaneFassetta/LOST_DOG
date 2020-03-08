@@ -3,7 +3,12 @@
 body {
     min-height: 100vh;
     text-align: center;
+    font-family: 'sitewide-sans-serif', sans-serif;
     background: linear-gradient(180deg, rgba(33, 38, 41, 0.96) 18%, rgb(39, 37, 37) 100%);
+}
+
+.container {
+    width: 90% !important;
 }
 
 .main-menu-row {
@@ -23,22 +28,25 @@ body {
 }
 
 .group-button-game {
-    padding: 6%;
+    padding: 5%;
     line-height: 1em;
     text-align: center;
 }
 
 .main-button {
     margin: auto auto 2%;
-    color: #c4c4c4 !important;
     min-width: 50%;
     max-width: 70%;
     width: 50%;
     line-height: 4em !important;
-    background-color: #801414b5 !important;
     -moz-box-shadow:    3px 3px 5px 6px #ccc;
     -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-    box-shadow: 3px 3px 2px 0px #13030391;
+    background-color: #992626 !important;
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.4);
+    color: #bfb8b8 !important;
+    border: none;
+    padding: 1em;
+    border-radius: 3px;
 }
 
 input[type=text] {
@@ -119,4 +127,41 @@ input:focus {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.submit-button {
+    background-color: #801414b5 !important;
+    margin-top: 3%;
+    color: #c4c4c4 !important;
+    width: 30%;
+    border-radius: 0 !important;
+}
+
+.back-button {
+    background-color: #801414b5 !important;
+    margin-top: 3%;
+    color: #c4c4c4 !important;
+    width: 30%;
+    border-radius: 0 !important;
+}
+
+.error {
+    color: red;
+}
+
+.group-button-create {
+    text-align: left;
+}
+
+.group-button-join {
+    text-align: left;
+}
+
+.head-form {
+    font-family: 'diavlo', sans-serif;
+    filter: drop-shadow(2px 2px 4px black);
+    color: #992626;
+    text-align: left;
+    margin-bottom: 5%;
+    font-size: 4em;
 }

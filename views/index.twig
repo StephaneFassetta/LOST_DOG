@@ -8,24 +8,27 @@
     <div class="container">
         <div class="group-button-game">
             <div class="row main-menu-row">
-                <a role="button" class="btn btn-lg main-button" id="createRoom">CREE UNE PARTIE</a>
+                <a role="button" class="btn btn-lg main-button" id="btnCreateRoom">CREE UNE PARTIE</a>
 
-                <div>
+                <div style="display: none" class="create-room-div">
+                    <h2 class="head-form">Crée une partie</h2>
+
                     <form action="" method="post" id="formCreateRoom">
-                        <div>
+                        <div class="create-room-input">
                             <label for="name" class="main-menu-label">NOM DE LA PARTIE
                                 <span>
                                     <input type="text" class="form-control" aria-label="nameRoom" id="nameRoom" name="nameRoom" aria-describedby="basic-addon1">
-                                    <p class="game-name-error"></p>
+                                    <p class="game-name-error error"></p>
                                 </span>
                             </label>
 
                             <label for="pseudo" class="main-menu-label">PSEUDO
                                 <span>
                                     <input type="text" class="form-control" aria-label="pseudoToCreate" name="pseudo" id="pseudoForCreate" class aria-describedby="basic-addon1">
-                                    <p class="player-name-error"></p>
+                                    <p class="player-name-error error"></p>
                                 </span>
                             </label>
+                            <a role="button" class="btn btn-lg main-button" id="createRoom">Crée</a>
                         </div>
 
                         <div class="row card-list">
@@ -51,32 +54,45 @@
                         <div id="role-in-game">
                         </div>
 
+                        <div class="group-button-create">
+                            <a role="button" class="btn btn-lg back-button" id="backCreateRoom">Retour</a>
+                            <a role="button" class="btn btn-lg submit-button" id="submitCreateRoom">Crée</a>
+                        </div>
+
                         <input type="hidden" id="newRoom" name="newRoom" aria-describedby="basic-addon1" value="1">
                     </form>
                 </div>
             </div>
 
             <div class="row main-menu-row">
-                <a role="button" class="btn btn-lg main-button" id="joinRoom">REJOINDRE UNE PARTIE</a>
-                <div>
+                <a role="button" class="btn btn-lg main-button" id="btnJoinRoom">REJOINDRE UNE PARTIE</a>
+                <div style="display: none" class="join-room-div">
                     <form action="" method="post" id="formJoinRoom">
                         <label for="name" class="main-menu-label">Nom de la partie
                             <span>
-                                <input type="text" class="form-control" aria-label="nameRoom" id="nameRoom" name="nameRoom" aria-describedby="basic-addon1">
-                                <p class="game-name-error"></p>
+                                <input type="text" class="form-control" aria-label="roomToJoin" id="roomToJoin" name="roomToJoin" aria-describedby="basic-addon1">
+                                <p class="game-name-error error"></p>
                             </span>
                         </label>
 
                         <label for="pseudo" class="main-menu-label">Pseudo
                             <span>
-                                <input type="text" class="form-control" aria-label="pseudoToCreate" name="pseudo" id="pseudoForCreate" class aria-describedby="basic-addon1">
-                                <p class="player-name-error"></p>
+                                <input type="text" class="form-control" aria-label="pseudoForJoin" name="pseudoForJoin" id="pseudoForJoin" class aria-describedby="basic-addon1">
+                                <p class="player-name-error error"></p>
                             </span>
                         </label>
+
+                        <div class="group-button-join">
+                            <a role="button" class="btn btn-lg back-button" id="backJoinRoom">Retour</a>
+                            <a role="button" class="btn btn-lg submit-button" id="submitJoinRoom">Rejoindre</a>
+                        </div>
+
                         <input type="hidden" id="joinRoom" name="joinRoom" aria-describedby="basic-addon1" value="1">
                     </form>
                 </div>
             </div>
+
+            <a role="button" class="btn btn-lg main-button" id="settings">COMMENT JOUER ?</a>
         </div>
     </div>
 {% endblock %}

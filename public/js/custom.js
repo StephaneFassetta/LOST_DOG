@@ -1,16 +1,35 @@
-$(document).ready(function(){
-    $('#createRoom').on('click', function (e) {
+$(document).ready(function() {
+    animateCSS('body', 'fadeIn', 'fast', 0);
+
+    $('#btnCreateRoom').on('click', function (e) {
         e.preventDefault();
+        $('.main-button').hide();
+        $('.create-room-div').show();
+
+        animateCSS('#formCreateRoom', 'fadeIn', 'fast', 0);
+    });
+
+    $('#submitCreateRoom').on('click', function (e) {
+        let error = false;
         let nameRoom = $('#nameRoom').val().trim();
         let pseudo = $('#pseudoForCreate').val().trim();
+        let cardsLength = $('.counter-card').length;
+        let atLeastOneCard = false;
+        let cardsInGame = {};
 
-        if (nameRoom == '' || pseudo == '') {
-            alert('Pour crée une partie il faut rentrer un nom ET un pseudo !')
-        } else {
-            let cardsLength = $('.counter-card').length;
-            let atLeastOneCard = false;
-            let cardsInGame = {};
+        if(pseudo == '') {
+            $('.player-name-error').text('Veuillez rentrer un pseudo.');
+            animateCSS('.player-name-error', 'fadeIn', 'fast', 0);
+            error = true;
+        }
 
+        if (nameRoom == '') {
+            $('.game-name-error').text('Veuillez rentrer un nom de partie.');
+            animateCSS('.game-name-error', 'fadeIn', 'fast', 0);
+            error = true;
+        }
+
+        if (!error) {
             for (let i = 1; i <= cardsLength; i++) {
                 let value = parseInt($('#card_' + i).text());
 
@@ -32,14 +51,31 @@ $(document).ready(function(){
         }
     });
 
-    $('#joinRoom').on('click', function (e) {
+    $('#btnJoinRoom').on('click', function (e) {
         e.preventDefault();
+        $('.main-button').hide();
+        $('.join-room-div').show();
+        animateCSS('#formJoinRoom', 'fadeIn', 'fast', 0);
+    });
+
+    $('#submitJoinRoom').on('click', function (e) {
+        let error = false;
         let roomToJoin = $('#roomToJoin').val().trim();
         let pseudo = $('#pseudoForJoin').val().trim();
 
-        if (roomToJoin == '' || pseudo == '') {
-            alert('Pour rejoindre une partie il faut rentrer un nom ET un pseudo !')
-        } else {
+        if (roomToJoin == '') {
+            $('.player-name-error').text('Veuillez rentrer un pseudo.');
+            animateCSS('.player-name-error', 'fadeIn', 'fast', 0);
+            error = true;
+        }
+
+        if (pseudo == '') {
+            $('.game-name-error').text('Veuillez rentrer un nom de partie.');
+            animateCSS('.game-name-error', 'fadeIn', 'fast', 0);
+            error = true;
+        }
+
+        if (!error) {
             $('#formJoinRoom').attr('action', 'room/' + roomToJoin);
             $('#formJoinRoom').submit();
         }
@@ -60,7 +96,25 @@ $(document).ready(function(){
         }
     });
 
-    $('.question-mark').tooltip();
+    $('.back-button').on('click', function(e) {
+        $('.join-room-div').hide();
+        $('.create-room-div').hide();
+        $('.main-button').show();
+
+        animateCSS('.main-button', 'fadeIn', 'fast', 0);
+    });
+
+    function animateCSS(element, animationName, duration, delay) {
+        const node = $(element);
+        node.addClass('animated  ' + animationName + ((duration != 0) ? ' delay-'+ delay +'s ' : ' ') + duration);
+
+        function handleAnimationEnd() {
+            node.removeClass('animated ' + animationName)
+            node.off('animationend', handleAnimationEnd)
+        }
+
+        node.on('animationend', handleAnimationEnd)
+    }
 
     $(function(){
         let page = window.location.pathname;
@@ -81,6 +135,6 @@ $(document).ready(function(){
     });
 
     $(function () {
-        $('[data-toggle="popover"]').popover()
-    })
+        $('.question-mark').tooltip();
+    });
 });
