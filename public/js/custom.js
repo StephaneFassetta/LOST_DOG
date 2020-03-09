@@ -6,6 +6,7 @@ $(document).ready(function() {
     $('#btnCreateRoom').on('click', function (e) {
         e.preventDefault();
         $('.main-button').hide();
+        $('.game-logo').hide();
         $('.create-room-div').show();
 
         animateCSS('#formCreateRoom', 'fadeIn', 'fast', 0);
@@ -56,6 +57,7 @@ $(document).ready(function() {
     $('#btnJoinRoom').on('click', function (e) {
         e.preventDefault();
         $('.main-button').hide();
+        $('.game-logo').hide();
         $('.join-room-div').show();
         animateCSS('#formJoinRoom', 'fadeIn', 'fast', 0);
     });
@@ -102,6 +104,7 @@ $(document).ready(function() {
         $('.join-room-div').hide();
         $('.create-room-div').hide();
         $('.main-button').show();
+        $('.game-logo').show();
         $('.game-name-error').empty();
         $('.player-name-error').empty();
 
@@ -143,9 +146,5 @@ $(document).ready(function() {
     });
 
 
-    const typewriter = new Typewriter('.head-title', {
-        strings: ['THE LOST DOG'],
-        autoStart: true,
-        delay: 200,
-    });
+    const typewriter = new Typewriter('.head-title', {'cursor' : ' '}).typeString('THE LOST DOG').start();
 });

@@ -6,14 +6,16 @@
 
 {% block body %}
     <div class="container">
-        <h2 class="head-title"></h2>
+        <div class="game-logo">
+            <a><img src="/images/logo-dog.gif"/></a>
+        </div>
 
         <div class="group-button-game">
             <div class="row main-menu-row">
                 <a role="button" class="btn btn-lg main-button hvr-shadow" id="btnCreateRoom">CREE UNE PARTIE</a>
 
                 <div style="display: none" class="create-room-div">
-                    <h2 class="head-form">Crée une partie</h2>
+                    <h2 class="head-title-form">Crée une partie</h2>
 
                     <form action="" method="post" id="formCreateRoom">
                         <div class="create-room-input">
@@ -69,7 +71,7 @@
             <div class="row main-menu-row">
                 <a role="button" class="btn btn-lg main-button hvr-shadow" id="btnJoinRoom">REJOINDRE UNE PARTIE</a>
                 <div style="display: none" class="join-room-div">
-                    <h2 class="head-form">Rejoindre une partie</h2>
+                    <h2 class="head-title-form">Rejoindre une partie</h2>
 
                     <form action="" method="post" id="formJoinRoom">
                         <label for="name" class="main-menu-label">Nom de la partie
@@ -95,8 +97,9 @@
                     </form>
                 </div>
             </div>
-
-            <a role="button" class="btn btn-lg main-button hvr-shadow" id="settings">COMMENT JOUER ?</a>
+            <div class="row main-menu-row">
+                <a role="button" class="btn btn-lg main-button hvr-shadow" id="settings">COMMENT JOUER ?</a>
+            </div>
         </div>
     </div>
 {% endblock %}

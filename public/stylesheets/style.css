@@ -1,17 +1,12 @@
 @font-face {
-    font-family: "pixelart";
-    src: url("../fonts/pixelart.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "house-marker";
-    src: url("../fonts/house-marker.ttf") format("truetype");
+    font-family: "ViceCitySans";
+    src: url("../fonts/ViceCitySans.otf") format("opentype");
 }
 
 body {
     min-height: 100vh;
     text-align: center;
-    font-family: sans-serif;
+    font-family: 'ViceCitySans' !important;
     background: linear-gradient(180deg, rgba(33, 38, 41, 0.96) 18%, rgb(39, 37, 37) 100%);
 }
 
@@ -36,16 +31,15 @@ body {
 }
 
 .group-button-game {
-    padding: 5%;
     line-height: 1em;
     text-align: center;
 }
 
 .main-button {
     margin: auto auto 2%;
-    min-width: 50%;
+    min-width: 60%;
     max-width: 70%;
-    width: 50%;
+    width: 60%;
     line-height: 4em !important;
     -moz-box-shadow:    3px 3px 5px 6px #ccc;
     -webkit-box-shadow: 3px 3px 5px 6px #ccc;
@@ -54,7 +48,7 @@ body {
     color: #bfb8b8 !important;
     border: none;
     padding: 1em;
-    border-radius: 3px;
+    border-radius: 0px !important;
 }
 
 input[type=text] {
@@ -165,8 +159,7 @@ input:focus {
     text-align: left;
 }
 
-.head-form {
-    font-family: 'diavlo', sans-serif;
+.head-title-form {
     filter: drop-shadow(2px 2px 4px black);
     color: #992626;
     text-align: left;
@@ -175,11 +168,14 @@ input:focus {
 }
 
 .head-title {
-    font-family: 'pixelart';
     filter: drop-shadow(2px 2px 4px black);
     color: #992626;
     margin-bottom: 5%;
-    font-size: 6em;
+    font-size: 4em;
     text-align: center;
     margin-top: 5%;
+}
+
+.game-logo {
+    text-align: center;
 }
