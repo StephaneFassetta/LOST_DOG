@@ -4,10 +4,6 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const uuidv1 = require('uuid/v1');
-const cookie = require('cookie');
-const Swal = require('sweetalert2');
-const lodash = require('lodash');
 
 //__ Library
 const app = require('./bin/www').app;
@@ -32,9 +28,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/classes', express.static(path.join(__dirname, 'classes')));
-app.use('/classes', express.static(path.join(__dirname, 'classes')));
 app.use('/fa', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free')));
 app.use('/animate', express.static(path.join(__dirname, 'node_modules/animate.css')));
+app.use('/hover', express.static(path.join(__dirname, 'node_modules/hover.css')));
+app.use('/typewriter', express.static(path.join(__dirname, 'node_modules/typewriter-effect')));
 
 
 io.on('connection', function(socket) {

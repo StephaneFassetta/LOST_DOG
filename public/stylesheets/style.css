@@ -1,9 +1,17 @@
-@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+@font-face {
+    font-family: "pixelart";
+    src: url("../fonts/pixelart.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "house-marker";
+    src: url("../fonts/house-marker.ttf") format("truetype");
+}
 
 body {
     min-height: 100vh;
     text-align: center;
-    font-family: 'sitewide-sans-serif', sans-serif;
+    font-family: sans-serif;
     background: linear-gradient(180deg, rgba(33, 38, 41, 0.96) 18%, rgb(39, 37, 37) 100%);
 }
 
@@ -164,4 +172,14 @@ input:focus {
     text-align: left;
     margin-bottom: 5%;
     font-size: 4em;
+}
+
+.head-title {
+    font-family: 'pixelart';
+    filter: drop-shadow(2px 2px 4px black);
+    color: #992626;
+    margin-bottom: 5%;
+    font-size: 6em;
+    text-align: center;
+    margin-top: 5%;
 }

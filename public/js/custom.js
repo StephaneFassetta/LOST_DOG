@@ -1,3 +1,5 @@
+import * as Typewrite from "/typewriter/dist/core.js";
+
 $(document).ready(function() {
     animateCSS('body', 'fadeIn', 'fast', 0);
 
@@ -100,6 +102,8 @@ $(document).ready(function() {
         $('.join-room-div').hide();
         $('.create-room-div').hide();
         $('.main-button').show();
+        $('.game-name-error').empty();
+        $('.player-name-error').empty();
 
         animateCSS('.main-button', 'fadeIn', 'fast', 0);
     });
@@ -136,5 +140,12 @@ $(document).ready(function() {
 
     $(function () {
         $('.question-mark').tooltip();
+    });
+
+
+    const typewriter = new Typewriter('.head-title', {
+        strings: ['THE LOST DOG'],
+        autoStart: true,
+        delay: 200,
     });
 });
