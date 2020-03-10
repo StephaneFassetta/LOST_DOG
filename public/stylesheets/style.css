@@ -28,7 +28,7 @@ html, body {
     color: #d6cccc;
     font-size: 20px;
     display: block !important;
-    margin-bottom: 5%;
+    margin-bottom: 2em;
     text-align: left;
 }
 
@@ -83,6 +83,10 @@ input:focus {
     text-align: left;
     display: block;
     font-size: 30px;
+}
+
+.card-list {
+    margin-bottom: 2em;
 }
 
 .card {
@@ -241,7 +245,7 @@ input:focus {
         color: #b5a1a1;
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
         user-select: none;
-        width: 154px;
+        width: 130px;
         height: 100%;
     }
 }
