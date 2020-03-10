@@ -3,6 +3,9 @@
     src: url("../fonts/ViceCitySans.otf") format("opentype");
 }
 
+/*
+ * Design du body, html et container
+ */
 html, body {
     margin: 0 auto;
     width: 100%;
@@ -19,7 +22,9 @@ html, body {
     background: linear-gradient(0deg, rgba(35,40,43,0.7959558823529411) 18%, rgba(131,131,131,0.6222864145658263) 100%);
 }
 
-
+/*
+ * Design sur écran principal
+ */
 .main-menu-row {
     display: block !important;
 }
@@ -53,23 +58,9 @@ html, body {
     margin-bottom: 4% !important;
 }
 
-input[type=text] {
-    background-color: transparent;
-    border: 1px solid #8a7a81;
-    caret-color: gray;
-    margin: 0.5em 0 0em 0;
-    color: gray;
-    padding: 0.9em;
-    height: 1.2em;
-    width: 12em;
-    border-radius: 5px;
-    font-size: 1.1em;
-}
-
-input:focus {
-    background-color: transparent !important;
-}
-
+/*
+ * Design carte des différents rôles
+ */
 .btn-card-counter {
     margin-right: 2%;
     display: inline;
@@ -137,6 +128,18 @@ input:focus {
     justify-content: space-between;
 }
 
+/*
+ * Design des templates pour rejoindre ou créer une partie
+ */
+
+.create-room-div {
+    padding: 3em;
+}
+
+.join-room-div {
+    padding: 3em;
+}
+
 .submit-button {
     background-color: #801414b5 !important;
     color: #c4c4c4 !important;
@@ -178,6 +181,27 @@ input:focus {
     margin-top: 5%;
 }
 
+input[type=text] {
+    background-color: transparent;
+    border: 1px solid #8a7a81;
+    caret-color: gray;
+    margin: 0.5em 0 0em 0;
+    color: gray;
+    padding: 0.9em;
+    height: 1.2em;
+    width: 12em;
+    border-radius: 5px;
+    font-size: 1.1em;
+}
+
+input:focus {
+    background-color: transparent !important;
+}
+
+/*
+ * Logo du jeu
+ */
+
 .game-logo {
     display: flex;
     align-items: center;
@@ -189,13 +213,9 @@ input:focus {
     width: 40%;
 }
 
-.create-room-div {
-    padding: 3em;
-}
-
-.join-room-div {
-    padding: 3em;
-}
+/*
+ * Media queries
+ */
 
 @media (max-width: 768px) {
     #logo {

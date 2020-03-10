@@ -85,6 +85,14 @@ $(document).ready(function() {
         }
     });
 
+    $('#btnShowInfo').on('click', function (e) {
+        e.preventDefault();
+        $('.main-button').hide();
+        $('.game-logo').hide();
+        $('.settings-div').show();
+        animateCSS('.settings-div', 'fadeIn', 'fast', 0);
+    });
+
     $('.btn-incremented-counter').on('click', function(e) {
         let childrenInput = $('#' + e.currentTarget.dataset.childrenInput);
         let valueChildren =  parseInt(childrenInput.text());

@@ -1,0 +1,26 @@
+<div style="display: none" class="join-room-div">
+    <h2 class="head-title-form">Rejoindre une partie</h2>
+
+    <form action="" method="post" id="formJoinRoom">
+        <label for="name" class="main-menu-label">Nom de la partie
+            <span>
+                        <input type="text" class="form-control" aria-label="roomToJoin" id="roomToJoin" name="roomToJoin" aria-describedby="basic-addon1">
+                        <p class="game-name-error error"></p>
+                    </span>
+        </label>
+
+        <label for="pseudo" class="main-menu-label">Pseudo
+            <span>
+                        <input type="text" class="form-control" aria-label="pseudoForJoin" name="pseudoForJoin" id="pseudoForJoin" class aria-describedby="basic-addon1">
+                        <p class="player-name-error error"></p>
+                    </span>
+        </label>
+
+        <div class="group-button-join">
+            <a role="button" class="btn btn-lg back-button hvr-icon-back hvr-shutter-out-horizontal" id="backJoinRoom"><i class="fa fa-chevron-circle-left hvr-icon"></i>  Retour</a>
+            <a role="button" class="btn btn-lg submit-button hvr-icon-forward" id="submitJoinRoom">Rejoindre  <i class="fa fa-chevron-circle-right hvr-icon"></i></a>
+        </div>
+
+        <input type="hidden" id="joinRoom" name="joinRoom" aria-describedby="basic-addon1" value="1">
+    </form>
+</div>
