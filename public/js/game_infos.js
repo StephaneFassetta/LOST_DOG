@@ -17,10 +17,10 @@ function refreshInfosUsersAndGame(game)
     let gameLimitPlayer = game.size;
 
     $('#list-people').empty();
-    $('#list-people').append('<p style="margin: 5px 5px">' + admin.name + ' (Maître du jeu) <p>');
+    $('#list-people').append('<p class="list-players">' + admin.name + ' (Maître du jeu) <p>');
 
-    Object.keys(players).forEach(function (key){
-        $('#list-people').append('<p style="margin: 5px 5px">' + players[key].name + '<p>');
+    Object.keys(players).forEach(function (key) {
+        $('#list-people').append('<p class="list-players">' + players[key].name + '<p>');
     });
 
 

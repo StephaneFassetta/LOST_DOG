@@ -1,0 +1,46 @@
+.room-container {
+	padding: 2em;
+}
+
+.head-title-lobby {
+	filter: drop-shadow(2px 2px 4px black);
+	color: #992626;
+	margin-bottom: 35px;
+	font-size: 4em;
+	text-align: center;
+}
+
+.game-informations {
+	font-size: 20px;
+	color: #8a7a81;
+}
+
+.list-players {
+	margin: auto;
+	border: solid 1.5px #792020;
+	width: 40%;
+	color: #bfb8b8;
+	border-radius: 3px;
+	font-size: 1em;
+	background-color: rgba(51, 50, 67, 0.35);
+	padding: 0.3em;
+	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 570px) {
+	.list-players {
+		margin: auto;
+		border: solid 1.5px #792020;
+		width: 90%;
+		color: #bfb8b8;
+		border-radius: 3px;
+		font-size: 1em;
+		background-color: rgba(51, 50, 67, 0.35);
+		padding: 0.3em;
+		box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
+	}
+
+	.head-title-lobby {
+		font-size: 40px;
+	}
+}
