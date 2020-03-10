@@ -144,7 +144,4 @@ $(document).ready(function() {
     $(function () {
         $('.question-mark').tooltip();
     });
-
-
-    const typewriter = new Typewriter('.head-title', {'cursor' : ' '}).typeString('THE LOST DOG').start();
 });
