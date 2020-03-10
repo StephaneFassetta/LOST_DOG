@@ -43,18 +43,18 @@ html, body {
 }
 
 .main-button {
-    width: 100% !important;
+    width: 55% !important;
     padding: 1.2em !important;
     font-size: 1em !important;
     box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.4) !important;
     background-color: #992626 !important;
     color: #bfb8b8 !important;
-    margin-bottom: 5% !important;
+    margin-bottom: 4% !important;
 }
 
 input[type=text] {
     background-color: transparent;
-    border: 1px solid #464552;
+    border: 1px solid #8a7a81;
     caret-color: gray;
     margin: 0.5em 0 1em 0;
     color: gray;
@@ -182,4 +182,16 @@ input:focus {
     align-items: center;
     flex-direction: column;
     line-height: 0.95;
+}
+
+#logo {
+    width: 40%;
+}
+
+.create-room-div {
+    padding: 5em;
+}
+
+.join-room-div {
+    padding: 5em;
 }
