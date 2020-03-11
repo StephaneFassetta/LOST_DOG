@@ -1,4 +1,3 @@
-import * as Typewrite from "/typewriter/dist/core.js";
 
 $(document).ready(function() {
     animateCSS('body', 'fadeIn', 'fast', 0);
