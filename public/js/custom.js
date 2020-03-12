@@ -153,6 +153,10 @@ $(document).ready(function() {
     });
 
     $("#btn-vibration").on('click', function(e) {
-        navigator.vibrate(250);
+        navigator.vibrate(1);
+    });
+
+    $('.container-game-card').on('click', function () {
+        $('.game-card').toggleClass('flipped');
     });
 });

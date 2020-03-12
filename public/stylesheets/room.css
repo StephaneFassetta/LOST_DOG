@@ -1,3 +1,56 @@
+.container-game-card {
+	width: 215px;
+	height: 300px;
+	position: relative;
+	-webkit-perspective: 800px;
+	-ms-perspective: 800px;
+	perspective: 800px;
+	border-radius: 4px;
+	margin: auto;
+}
+
+.game-card {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition: -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	border-radius: 6px;
+	box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+	cursor: pointer;
+}
+
+.game-card .card-game-back, .game-card .card-game-front {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	border-radius: 6px;
+	background: #fff;
+	display: -ms-flexbox;
+	display: box;
+	-webkit-box-pack: center;
+	-o-box-pack: center;
+	font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	color: #47525d;
+}
+
+.game-card .card-game-back {
+	-webkit-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
+.game-card.flipped {
+	-webkit-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
 .room-container {
 	padding: 2em;
 }
@@ -26,6 +79,10 @@
 	background-color: rgba(51, 50, 67, 0.35);
 	padding: 0.3em;
 	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+.in-game-div {
+	display: none;
 }
 
 @media screen and (max-width: 570px) {
