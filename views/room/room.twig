@@ -20,8 +20,8 @@
             <p id="role"> Votre rôle est : </p>
         {% endif %}
 
-        <div class="staging-div">
-            <h2 class="head-title-lobby">Staging</h2>
+        <div class="lobby-div">
+            <h2 class="head-title-lobby">LOBBY</h2>
 
             <div class="game-informations" style="text-align: center">
                 <div class="informations-staging">
@@ -32,6 +32,9 @@
 
                 <div class="list-people" id="list-people">
                 </div>
+
+                <a class="btn btn-primary" href="#" role="button" id="btn-vibration">Faire vibrer</a>
+
 
                 {% if admin == 1 %}
                     <a class="btn btn-primary" href="#" role="button" id="btn-launch-game">Lancer la partie</a>

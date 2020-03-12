@@ -151,4 +151,8 @@ $(document).ready(function() {
     $(function () {
         $('.question-mark').tooltip();
     });
+
+    $("#btn-vibration").on('click', function(e) {
+        navigator.vibrate(250);
+    });
 });
