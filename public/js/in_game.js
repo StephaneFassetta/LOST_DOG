@@ -33,7 +33,7 @@ function showCardForPlayer()
 function showCardsForAdmin(players)
 {
     players.forEach(function (element, index) {
-        tools.addRoleInChat(element.name, element.role.role);
+        tools.addCardsForAdmin(element.name, element.role.role);
     });
 
     showAdminCards = true

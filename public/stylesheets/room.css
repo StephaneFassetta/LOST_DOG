@@ -1,3 +1,10 @@
+.role-card {
+	text-align: center;
+	padding: 15px;
+	font-size: 24px;
+	color: grey;
+}
+
 .container-game-card {
 	width: 215px;
 	height: 300px;
