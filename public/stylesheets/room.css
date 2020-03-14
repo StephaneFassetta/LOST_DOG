@@ -46,6 +46,7 @@
 	font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	color: #47525d;
+	text-align: center;
 }
 
 .game-card .card-game-back {
