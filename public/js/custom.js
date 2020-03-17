@@ -130,33 +130,15 @@ $(document).ready(function() {
         node.on('animationend', handleAnimationEnd)
     }
 
-    $(function(){
-        let page = window.location.pathname;
-
-        if(!page) {
-            page = '/';
-        }
-
-        $('.navbar-nav li a').each(function(){
-            let href = $(this).attr('href');
-
-            if ((href == page) || (href == '')) {
-                $(this).addClass('active');
-            } else {
-                $(this).removeClass('active');
-            }
-        });
-    });
-
     $(function () {
         $('.question-mark').tooltip();
     });
 
-    $("#btn-vibration").on('click', function(e) {
-        navigator.vibrate(1);
-    });
-
-    $('.container-game-card').on('click', function () {
-        $('.game-card').toggleClass('flipped');
+    $(document).on('click', '.game-card', function() {
+        if ($(this)[0].classList.contains('active')) {
+            $(this)[0].classList.remove('active')
+        } else {
+            $(this)[0].classList.add('active');
+        }
     });
 });
