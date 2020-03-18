@@ -1,5 +1,3 @@
-import * as tools from './tools.js';
-
 socketIo.on('refreshInfosUsersAndGame', function(gameInfos) {
     refreshInfosUsersAndGame(gameInfos.game);
 });

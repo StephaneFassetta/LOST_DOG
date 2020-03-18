@@ -96,6 +96,11 @@ io.on('connection', function(socket) {
         const game = roomsActive[Object.keys(roomsActive).find((key) => key === nameRoom.name)];
         io.sockets.to(game.name).emit('retrieveActualGame', game);
     });
+
+    socket.on('vibratePlayer', function(nameRoom) {
+        const game = roomsActive[Object.keys(roomsActive).find((key) => key === nameRoom.name)];
+        io.sockets.to(game.name).emit('retrieveActualGame', game);
+    });
 });
 
 // Make io accessible to our router

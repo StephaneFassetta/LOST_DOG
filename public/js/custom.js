@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     animateCSS('body', 'fadeIn', 'fast', 0);
 

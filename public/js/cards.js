@@ -1,13 +1,3 @@
-// const jsonfile = require('jsonfile');
-// const file = "./json/cards-json.json";
-//
-// jsonfile.readFile(file)
-//     .then(function (obj) {
-//         console.log(obj)
-//     })
-//     .catch(error => console.error(error));
-//
-
 const cards = [
     {
         "id": 1,
