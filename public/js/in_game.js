@@ -20,15 +20,17 @@ socketIo.on('retrieveActualGame', function(game) {
 });
 
 socketIo.on('vibratePlayer', function() {
-    console.log('vibrate receive')
+    if (navigator.vibrate) {
+        navigator.vibrate(500);
+    }
 });
 
 $(document).ready(function () {
-    $(document).on('click', '.btn-vibrate', function () {
-        // TODO : Recuperer le pseudo du joueur, recuperer son socket id et emettre levenement
-        let pseudo = $('.info h2').text();
-
-        socketIo.to(`${player.socketId}`).emit('vibratePlayer', {game : actualGame, pseudo : pseudo});
+    $(document).on('click', '.btn-vibrate', function (e) {
+        e.preventDefault();
+        let socketId = $('.div-btn-card')[0].dataset.socketId;
+        console.log(socketId);
+        socketIo.emit('vibratePlayer', {socketId : socketId});
     });
 });
 
@@ -47,8 +49,8 @@ function getPlayerByPseudo(pseudo)
 
 function showCardsForAdmin(players)
 {
-    players.forEach(function (element, index) {
-        tools.addCardsForAdmin(element.name, element.role.role, element.status);
+    players.forEach(function (player, index) {
+        tools.addCardsForAdmin(player);
     });
 
     showAdminCards = true
