@@ -1,6 +1,9 @@
 $(document).ready(function() {
     animateCSS('body', 'fadeIn', 'fast', 0);
 
+    /*
+     * EVENEMENT CREE UNE PARTIE
+     */
     $('#btnCreateRoom').on('click', function (e) {
         e.preventDefault();
         $('.main-button').hide();
@@ -52,6 +55,9 @@ $(document).ready(function() {
         }
     });
 
+    /*
+     * EVENEMENT REJOINDRE UNE PARTIE
+     */
     $('#btnJoinRoom').on('click', function (e) {
         e.preventDefault();
         $('.main-button').hide();
@@ -83,6 +89,9 @@ $(document).ready(function() {
         }
     });
 
+    /*
+     * EVENEMENT REGLES DU JEU
+     */
     $('#btnShowInfo').on('click', function (e) {
         e.preventDefault();
         $('.main-button').hide();
@@ -91,12 +100,18 @@ $(document).ready(function() {
         animateCSS('.settings-div', 'fadeIn', 'fast', 0);
     });
 
+    /*
+     * BOUTON + sur carte des rôles
+     */
     $('.btn-incremented-counter').on('click', function(e) {
         let childrenInput = $('#' + e.currentTarget.dataset.childrenInput);
         let valueChildren =  parseInt(childrenInput.text());
         childrenInput.text(valueChildren + 1);
     });
 
+    /*
+     * BOUTON - sur carte des rôles
+     */
     $('.btn-decremented-counter').on('click', function(e) {
         let childrenInput = $('#' + e.currentTarget.dataset.childrenInput);
         let valueChildren =  parseInt(childrenInput.text());
@@ -106,6 +121,9 @@ $(document).ready(function() {
         }
     });
 
+    /*
+     * BOUTON RETOUR DANS LES MENUS PRINCIPALES
+     */
     $('.back-button').on('click', function(e) {
         $('.join-room-div').hide();
         $('.create-room-div').hide();
@@ -117,6 +135,9 @@ $(document).ready(function() {
         animateCSS('.main-button', 'fadeIn', 'fast', 0);
     });
 
+    /*
+     * PERMET DE METTRE UN EFFET SUR UN ELEMENT (LIBRARIE ANIMATED.CSS)
+     */
     function animateCSS(element, animationName, duration, delay) {
         const node = $(element);
         node.addClass('animated  ' + animationName + ((duration != 0) ? ' delay-'+ delay +'s ' : ' ') + duration);
@@ -129,10 +150,16 @@ $(document).ready(function() {
         node.on('animationend', handleAnimationEnd)
     }
 
+    /*
+     * PERMET D'AFFICHER UN TOOLTIP SUR LES CARTES DES ROLES
+     */
     $(function () {
         $('.question-mark').tooltip();
     });
 
+    /*
+     * PERMET DE CREE L'EFFET ROTATE SUR LES CARTES EN JEU
+     */
     $(document).on('click', '.game-card', function() {
         if ($(this)[0].classList.contains('active')) {
             $(this)[0].classList.remove('active')

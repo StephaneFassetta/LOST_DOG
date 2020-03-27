@@ -21,16 +21,27 @@ socketIo.on('retrieveActualGame', function(game) {
 
 socketIo.on('vibratePlayer', function() {
     if (navigator.vibrate) {
+        console.log('Vibrating receive');
         navigator.vibrate(500);
     }
 });
 
+socketIo.on('killPlayer', function(game) {
+    showAdminCards = false;
+    showPlayerKilled(game.lastPlayerKilled);
+});
+
 $(document).ready(function () {
     $(document).on('click', '.btn-vibrate', function (e) {
-        e.preventDefault();
-        let socketId = $('.div-btn-card')[0].dataset.socketId;
-        console.log(socketId);
+        e.stopPropagation();
+        let socketId = $(this)[0].offsetParent.dataset.socketId;
         socketIo.emit('vibratePlayer', {socketId : socketId});
+    });
+
+    $(document).on('click', '.btn-death', function (e) {
+        e.stopPropagation();
+        let socketId = $(this)[0].offsetParent.dataset.socketId;
+        socketIo.emit('killPlayer', {nameRoom : nameRoom, socketId : socketId});
     });
 });
 
@@ -38,17 +49,13 @@ function showCardForPlayer()
 {
     let player = actualGame.players.find((player) => player.name === name);
     $('#role').append(player.role.role);
-    showPlayerCard = true
-}
-
-function getPlayerByPseudo(pseudo)
-{
-    let player = actualGame.players.find((player) => player.name === pseudo);
-    return player;
+    showPlayerCard = true;
 }
 
 function showCardsForAdmin(players)
 {
+    $('.admin-cards').empty();
+
     players.forEach(function (player, index) {
         tools.addCardsForAdmin(player);
     });
@@ -56,6 +63,17 @@ function showCardsForAdmin(players)
     showAdminCards = true
 }
 
+function showPlayerKilled(player)
+{
+    console.log(player);
+    $('#overlay-killed').fadeIn('slow');
+    $('#pseudo-killed').text(player.role.role);
+
+    setTimeout(function() {
+        $('#overlay-killed').fadeOut('slow');
+    }, 2000);
+}
+
 setInterval(function () {
     socketIo.emit('updateActualGame', { name: nameRoom });
-}, 500);
+}, 200);

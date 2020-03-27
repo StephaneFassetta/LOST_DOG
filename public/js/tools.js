@@ -1,18 +1,18 @@
 export function addCardsForAdmin(player)
 {
-    $('.container-game-cards').append(`<div class="container-card inactive">
+    $('.admin-cards').append(`<div class="container-card inactive">
         <div class="game-card">
             <div class="side front"> 
                 <div class="img img3"></div>
                     <div class="info">
                         <h2>${player.name}</h2>
+                        <p id="icon-status">${(player.alive ? '<i class="fas fa-heart" style="color: #ff4d4d;"></i>' : '<i class="fas fa-skull-crossbones" style="color: #000000;"></i>')}</p>
                         <p class="card-instruction">Cliquez sur la carte pour découvrir votre rôle. Ne le montrez à personne !</p>
                     </div>
                 </div>
                 <div class="side back">
                     <div class="info">
                         <h2 id="role">${player.role.role}</h2> 
-                        <p id="icon-status">${(player.alive ? '<i class="fas fa-heart"></i>' : '<i class="fas fa-skull-crossbones"></i>')}</p>
                         <ul>
                             <li></li>
                             <li></li>

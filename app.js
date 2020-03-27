@@ -97,13 +97,22 @@ io.on('connection', function(socket) {
         io.sockets.to(game.name).emit('retrieveActualGame', game);
     });
 
-    socket.on('vibratePlayer', function(information) {
-        io.sockets.to(information.socketId).emit('vibratePlayer');
+    socket.on('vibratePlayer', function(informations) {
+        io.sockets.to(informations.socketId).emit('vibratePlayer');
+    });
+
+    socket.on('killPlayer', function(informations) {
+        let game = roomsActive[Object.keys(roomsActive).find((key) => key === informations.nameRoom)];
+        let socketId = informations.socketId;
+        let player = game.players.find((player) => player.socketId === socketId);
+        player.alive = false;
+        game.lastPlayerKilled = player;
+        io.sockets.to(game.name).emit('killPlayer', game);
     });
 });
 
 // Make io accessible to our router
-app.use(function(req,res,next){
+app.use(function(req,res,next) {
     req.io = io;
     next();
 });

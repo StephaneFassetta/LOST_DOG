@@ -20,7 +20,6 @@ function refreshInfosUsersAndGame(game)
         $('#list-people').append('<p class="list-players">' + players[key].name + '<p>');
     });
 
-
     $('#limit-user').text(gameLimitPlayer);
     $('#ingame-user').text(playerLength);
 

@@ -7,10 +7,7 @@ class GameRoom {
         this.players = [];
         this.admin = admin;
         this.status = "lobby";
-    }
-
-    getPlayerByName(name) {
-        return this.players.find((player) => player.name === name);
+        this.lastPlayerKilled = null;
     }
 };
 
