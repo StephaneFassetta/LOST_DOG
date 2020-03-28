@@ -65,9 +65,8 @@ function showCardsForAdmin(players)
 
 function showPlayerKilled(player)
 {
-    console.log(player);
     $('#overlay-killed').fadeIn('slow');
-    $('#pseudo-killed').text(player.role.role);
+    $('#overlay-killed').append(`<p><b>${player.name}</b> est mort.</p><br><p>Son rôle était <b>${player.role.role}</b></p>`);
 
     setTimeout(function() {
         $('#overlay-killed').fadeOut('slow');
