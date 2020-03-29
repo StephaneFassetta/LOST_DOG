@@ -14,8 +14,9 @@ const tools = require('./classes/Tools');
 const indexRouter = require('./routes/index');
 const roomRouter = require('./routes/room/room.index');
 const settingsRouter = require('./routes/settings/settings.index');
+const ajaxRouter = require('./routes/ajax');
 
-var roomsActive = {};
+const roomsActive = {};
 
 //__ Views engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -114,12 +115,14 @@ io.on('connection', function(socket) {
 // Make io accessible to our router
 app.use(function(req,res,next) {
     req.io = io;
+    req.roomsActive = roomsActive;
     next();
 });
 
 app.use('/', indexRouter);
 app.use('/room', roomRouter);
 app.use('/settings', settingsRouter);
+app.use('/ajax', ajaxRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

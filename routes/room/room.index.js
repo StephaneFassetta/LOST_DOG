@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 router.post('/:id', function(req, res, next) {
-    let nameRoom = req.params.id;
+    let nameRoom = req.params.id.toLowerCase();
     let pseudo = req.body.pseudo;
     let maxPlayerLimit = (req.body.maxPlayerLimit == '') ? 10 : req.body.maxPlayerLimit;
     let admin = 0;

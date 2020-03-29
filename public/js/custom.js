@@ -21,38 +21,52 @@ $(document).ready(function() {
         let atLeastOneCard = false;
         let cardsInGame = {};
 
-        if(pseudo == '') {
-            $('.player-name-error').text('Veuillez rentrer un pseudo.');
-            animateCSS('.player-name-error', 'fadeIn', 'fast', 0);
-            error = true;
-        }
+        $.ajax({
+            type: 'post',
+            url: '/ajax/existRoom',
+            data: {nameRoom : $('#nameRoom').val().trim()},
+            dataType: 'text'
+        }).done(function(roomExist) {
+            if (roomExist == 'true') {
+                $('.game-name-error').text('Une partie avec ce nom existe déjà. Veuillez en choisir un autre.');
+                animateCSS('.game-name-error', 'fadeIn', 'fast', 0);
+                error = true;
+            }
 
-        if (nameRoom == '') {
-            $('.game-name-error').text('Veuillez rentrer un nom de partie.');
-            animateCSS('.game-name-error', 'fadeIn', 'fast', 0);
-            error = true;
-        }
+            if (pseudo === '') {
+                $('.player-name-error').text('Veuillez rentrer un pseudo.');
+                animateCSS('.player-name-error', 'fadeIn', 'fast', 0);
+                error = true;
+            }
 
-        if (!error) {
-            for (let i = 1; i <= cardsLength; i++) {
-                let value = parseInt($('#card_' + i).text());
+            if (nameRoom === '') {
+                $('.game-name-error').text('Veuillez rentrer un nom de partie.');
+                animateCSS('.game-name-error', 'fadeIn', 'fast', 0);
+                error = true;
+            }
 
-                if (value > 0) {
-                    atLeastOneCard = true;
+
+            if (!error) {
+                for (let i = 1; i <= cardsLength; i++) {
+                    let value = parseInt($('#card_' + i).text());
+
+                    if (value > 0) {
+                        atLeastOneCard = true;
+                    }
+
+                    let id_card = i;
+                    cardsInGame[id_card] = value;
                 }
 
-                let id_card = i;
-                cardsInGame[id_card] = value;
+                if (atLeastOneCard) {
+                    $('<input type="hidden" name="cardsInGame"/>').val(JSON.stringify(cardsInGame)).appendTo('#role-in-game');
+                    $('#formCreateRoom').attr('action', 'room/' + nameRoom);
+                    $('#formCreateRoom').submit();
+                } else {
+                    alert('Sélectionner au moins UN rôle !')
+                }
             }
-
-            if (atLeastOneCard) {
-                $('<input type="hidden" name="cardsInGame"/>').val(JSON.stringify(cardsInGame)).appendTo('#role-in-game');
-                $('#formCreateRoom').attr('action', 'room/' + nameRoom);
-                $('#formCreateRoom').submit();
-            } else {
-                alert('Sélectionner au moins UN rôle !')
-            }
-        }
+        });
     });
 
     /*
@@ -136,6 +150,17 @@ $(document).ready(function() {
     });
 
     /*
+    * PERMET DE CREE L'EFFET ROTATE SUR LES CARTES EN JEU
+    */
+    $(document).on('click', '.game-card', function() {
+        if ($(this)[0].classList.contains('active')) {
+            $(this)[0].classList.remove('active')
+        } else {
+            $(this)[0].classList.add('active');
+        }
+    });
+
+    /*
      * PERMET DE METTRE UN EFFET SUR UN ELEMENT (LIBRARIE ANIMATED.CSS)
      */
     function animateCSS(element, animationName, duration, delay) {
@@ -155,16 +180,5 @@ $(document).ready(function() {
      */
     $(function () {
         $('.question-mark').tooltip();
-    });
-
-    /*
-     * PERMET DE CREE L'EFFET ROTATE SUR LES CARTES EN JEU
-     */
-    $(document).on('click', '.game-card', function() {
-        if ($(this)[0].classList.contains('active')) {
-            $(this)[0].classList.remove('active')
-        } else {
-            $(this)[0].classList.add('active');
-        }
     });
 });
