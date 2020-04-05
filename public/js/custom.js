@@ -24,7 +24,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'post',
             url: '/ajax/existRoom',
-            data: {nameRoom : $('#nameRoom').val().trim()},
+            data: {nameRoom : nameRoom},
             dataType: 'text'
         }).done(function(roomExist) {
             if (roomExist == 'true') {
@@ -85,22 +85,30 @@ $(document).ready(function() {
         let roomToJoin = $('#roomToJoin').val().trim();
         let pseudo = $('#pseudoForJoin').val().trim();
 
-        if (roomToJoin == '') {
-            $('.player-name-error').text('Veuillez rentrer un pseudo.');
-            animateCSS('.player-name-error', 'fadeIn', 'fast', 0);
-            error = true;
-        }
+        $.ajax({type: 'post', url: '/ajax/existRoom', data: {nameRoom : roomToJoin}, dataType: 'text'}).done(function(roomExist) {
+            if (roomExist != 'true') {
+                $('.game-name-error').text('Cette partie n\'existe pas.');
+                animateCSS('.game-name-error', 'fadeIn', 'fast', 0);
+                error = true;
+            }
 
-        if (pseudo == '') {
-            $('.game-name-error').text('Veuillez rentrer un nom de partie.');
-            animateCSS('.game-name-error', 'fadeIn', 'fast', 0);
-            error = true;
-        }
+            if (roomToJoin == '') {
+                $('.player-name-error').text('Veuillez rentrer un pseudo.');
+                animateCSS('.player-name-error', 'fadeIn', 'fast', 0);
+                error = true;
+            }
 
-        if (!error) {
-            $('#formJoinRoom').attr('action', 'room/' + roomToJoin);
-            $('#formJoinRoom').submit();
-        }
+            if (pseudo == '') {
+                $('.game-name-error').text('Veuillez rentrer un nom de partie.');
+                animateCSS('.game-name-error', 'fadeIn', 'fast', 0);
+                error = true;
+            }
+
+            if (!error) {
+                $('#formJoinRoom').attr('action', 'room/' + roomToJoin);
+                $('#formJoinRoom').submit();
+            }
+        });
     });
 
     /*

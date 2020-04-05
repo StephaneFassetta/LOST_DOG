@@ -102,6 +102,11 @@ io.on('connection', function(socket) {
 
     socket.on('updateActualGame', function(nameRoom) {
         const game = roomsActive[nameRoom.name];
+
+        if (!game) {
+            return false;
+        }
+
         io.sockets.to(game.name).emit('retrieveActualGame', game);
     });
 
