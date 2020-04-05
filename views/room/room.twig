@@ -9,72 +9,30 @@
         <input type="hidden" id="pseudo" value="{{ pseudo }}">
         <input type="hidden" id="admin" value="{{ admin }}">
     </div>
+
     <div id="gameRoomProfil" style="display: none">
         <input type="hidden" id="nameRoom" value="{{ nameRoom }}">
         <input type="hidden" id="hasBeenCreate" value="{{ hasBeenCreate }}">
         <input type="hidden" id="maxPlayerLimit" value="{{ maxPlayerLimit }}">
         <input type="hidden" id="cardsInGame" data-value="{{ cardsInGame }}">
     </div>
+
     {% if admin == 0 %}
-        <div id="overlay-killed" style="display: none">
+        <div id="overlay-informations" style="display: none">
         </div>
     {% endif %}
+
     <div class="room-container">
         <div class="lobby-div">
-            <h2 class="head-title-lobby">LOBBY</h2>
-
-            <div class="game-informations" style="text-align: center">
-                <div class="informations-staging">
-                    <span id="nameRoom">{{ nameRoom }}</span><br>
-                    <span id="ingame-user"></span>/<span id="limit-user"></span> joueur(s)
-                </div>
-
-                <div class="list-people" id="list-people">
-                </div>
-
-                {% if admin == 1 %}
-                    <a class="btn btn-primary" href="#" role="button" id="btn-launch-game">Lancer la partie</a>
-                {% endif %}
-            </div>
+            {% block lobby %}
+                {% include './partials/lobby.twig' %}
+            {% endblock %}
         </div>
 
         <div class="in-game-div">
-            <h2 class="head-title-lobby">IN GAME</h2>
-
-            {% if admin == 0 %}
-                <div class="in-game-player-div">
-                    <div class="container-game-cards player-cards">
-                        <div class="container-card inactive">
-                            <div class="game-card">
-                                <div class="side front">
-                                    <div class="img img3"></div>
-                                    <div class="info">
-                                        <h2>{{ pseudo }}</h2>
-                                        <p class="card-instruction">Cliquez sur la carte pour découvrir votre rôle. Ne le montrez à personne !</p>
-                                    </div>
-                                </div>
-                                <div class="side back">
-                                    <div class="info">
-                                        <h2 id="role"></h2>
-                                        <ul>
-                                            <li>Compétence N°1</li>
-                                            <li>Compétence N°3</li>
-                                            <li>Compétence N°2</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-
-            {% if admin == 1 %}
-                <div class="in-game-admin-div">
-                    <div class="container-game-cards admin-cards row">
-                    </div>
-                </div>
-            {% endif %}
+            {% block inGame %}
+                {% include './partials/in-game.twig' %}
+            {% endblock %}
         </div>
     </div>
 {% endblock %}

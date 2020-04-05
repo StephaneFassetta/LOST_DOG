@@ -4,7 +4,6 @@ class Admin {
         this.name = name;
         this.socketId = socketId;
     }
-
 };
 
 export default Admin;

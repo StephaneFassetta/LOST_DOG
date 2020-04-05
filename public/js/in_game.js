@@ -19,10 +19,15 @@ socketIo.on('retrieveActualGame', function(game) {
     }
 });
 
-socketIo.on('vibratePlayer', function() {
-    if (navigator.vibrate) {
+socketIo.on('vibratePlayer', function(player) {
+    navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+    const isMobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i)
+
+    if (navigator.vibrate && isMobile) {
         console.log('Vibrating receive');
         navigator.vibrate(500);
+    } else {
+        showRandomInformation(player);
     }
 });
 
@@ -35,7 +40,7 @@ $(document).ready(function () {
     $(document).on('click', '.btn-vibrate', function (e) {
         e.stopPropagation();
         let socketId = $(this)[0].offsetParent.dataset.socketId;
-        socketIo.emit('vibratePlayer', {socketId : socketId});
+        socketIo.emit('vibratePlayer', {nameRoom : nameRoom, socketId : socketId});
     });
 
     $(document).on('click', '.btn-death', function (e) {
@@ -65,13 +70,27 @@ function showCardsForAdmin(players)
 
 function showPlayerKilled(player)
 {
-    $('#overlay-killed').fadeIn('slow');
-    $('#overlay-killed').append(`<p><b>${player.name}</b> est mort.</p><br><p>Son rôle était <b>${player.role.role}</b></p>`);
+    $('#overlay-informations').empty();
+    $('#overlay-informations').fadeIn('slow');
+    $('#overlay-informations').append(`<p><b>${player.name}</b> est mort.</p><br><p> Son rôle était <b>${player.role.role}</b></p>`);
 
     setTimeout(function() {
-        $('#overlay-killed').fadeOut('slow');
+        $('#overlay-informations').fadeOut('slow');
     }, 2000);
 }
+
+function showRandomInformation(player)
+{
+    $('#overlay-informations').empty();
+    $('#overlay-informations').fadeIn('slow');
+    $('#overlay-informations').append(`<p><b>L'admin vous a fait vibrer ! Bzzzzzzzz !</b></p>`);
+
+    setTimeout(function() {
+        $('#overlay-informations').fadeOut('slow');
+    }, 2000);
+}
+
+
 
 setInterval(function () {
     socketIo.emit('updateActualGame', { name: nameRoom });

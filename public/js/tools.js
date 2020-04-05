@@ -17,7 +17,7 @@ export function addCardsForAdmin(player)
                             <li></li>
                             <li></li>
                         </ul>
-                        <div class="div-btn-card" data-socket-id="${player.socketId}">
+                        <div class="div-btn-card" data-socket-id="${player.socketId}" ${(!player.alive ? 'disabled' : '')}>
                             <div class="btn-vibrate">
                                 <button type="button" class="btn btn-warning">Faire vibrer</button>
                             </div>

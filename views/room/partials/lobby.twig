@@ -1,0 +1,15 @@
+<h2 class="head-title-lobby">LOBBY</h2>
+
+<div class="game-informations" style="text-align: center">
+    <div class="informations-staging">
+        <span id="nameRoom">{{ nameRoom }}</span><br>
+        <span id="ingame-user"></span>/<span id="limit-user"></span> joueur(s)
+    </div>
+
+    <div class="list-people" id="list-people">
+    </div>
+
+    {% if admin == 1 %}
+        <a class="btn btn-primary" href="#" role="button" id="btn-launch-game">Lancer la partie</a>
+    {% endif %}
+</div>

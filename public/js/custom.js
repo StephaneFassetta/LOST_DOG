@@ -110,7 +110,7 @@ $(document).ready(function() {
         e.preventDefault();
         $('.main-button').hide();
         $('.game-logo').hide();
-        $('.settings-div').show();
+        $('.how-to-learn-div').show();
         animateCSS('.settings-div', 'fadeIn', 'fast', 0);
     });
 
@@ -141,6 +141,7 @@ $(document).ready(function() {
     $('.back-button').on('click', function(e) {
         $('.join-room-div').hide();
         $('.create-room-div').hide();
+        $('.how-to-learn-div').hide();
         $('.main-button').show();
         $('.game-logo').show();
         $('.game-name-error').empty();

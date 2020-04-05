@@ -46,18 +46,24 @@ io.on('connection', function(socket) {
 
             Object.keys(gameExist.players).forEach(function(key) {
                 if (gameExist.players[key].socketId == socket.id) {
-                    console.log('Le joueur ' + gameExist.players[key].name + ' à quitté la partie !');
+                    console.log('Le joueur ' + gameExist.players[key].name + ' a quitté la partie !');
                     gameExist.players.splice(gameExist.players.indexOf(gameExist.players[key]));
+                    socket.leave(gameExist.name);
                 }
             });
 
-            io.sockets.to(gameExist.name).emit('refreshInfosUsersAndGame', { 'game' : gameExist, 'user' : playerLeave, 'event' : 'disconnectToGame'});
+            if (gameExist.players.length < 1) {
+                console.log(gameExist.name);
+                delete roomsActive[gameExist.name];
+            } else {
+                io.sockets.to(gameExist.name).emit('refreshInfosUsersAndGame', {'game' : gameExist, 'user' : playerLeave, 'event' : 'disconnectToGame'});
+            }
         }
     });
 
     socket.on('joinGameRoom', function(dataRoom)
     {
-        const gameExist = roomsActive[Object.keys(roomsActive).find((key) => key === dataRoom.name)];
+        const gameExist = roomsActive[dataRoom.name];
 
         if (gameExist && gameExist.players.length < gameExist.size) {
             socket.join(dataRoom.name);
@@ -72,6 +78,7 @@ io.on('connection', function(socket) {
     {
         socket.join(game.name);
         roomsActive[game.name] = game;
+        socket.game = game;
         console.log('Une room vient d\'être créé. Nom de la room : ' + game.name);
         io.sockets.to(game.name).emit('refreshInfosUsersAndGame', { 'game' : game, 'user' : game.admin, 'event' : 'createGameRoom'});
     });
@@ -94,12 +101,14 @@ io.on('connection', function(socket) {
     });
 
     socket.on('updateActualGame', function(nameRoom) {
-        const game = roomsActive[Object.keys(roomsActive).find((key) => key === nameRoom.name)];
+        const game = roomsActive[nameRoom.name];
         io.sockets.to(game.name).emit('retrieveActualGame', game);
     });
 
     socket.on('vibratePlayer', function(informations) {
-        io.sockets.to(informations.socketId).emit('vibratePlayer');
+        const game = roomsActive[informations.nameRoom];
+        let player = game.players.find((player) => player.socketId === informations.socketId);
+        io.sockets.to(informations.socketId).emit('vibratePlayer', player);
     });
 
     socket.on('killPlayer', function(informations) {
@@ -112,8 +121,7 @@ io.on('connection', function(socket) {
     });
 });
 
-// Make io accessible to our router
-app.use(function(req,res,next) {
+app.use(function(req, res, next) {
     req.io = io;
     req.roomsActive = roomsActive;
     next();

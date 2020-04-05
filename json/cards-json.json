@@ -2,7 +2,7 @@
   {
     "id": 1,
     "role": "Chien perdu",
-    "description": "Chaque nuit, le chien perdu emmène une personne dans la forêt pour l'attacher à un arbre et le tuer..."
+    "description": "Chaque nuit, le chien perdu emmène une personne dans la forêt pour l'attacher à un arbre et le tuer...",
   },
   {
     "id": 2,
@@ -16,7 +16,7 @@
   },
   {
     "id": 4,
-    "role": "Habitant",
+    "role": "Maire",
     "description": "Les habitants sont innoffensif et ne peuvent rien faire sauf voter."
   },
   {

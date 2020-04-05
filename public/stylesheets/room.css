@@ -216,7 +216,7 @@
 /*
  * DESIGN OVERLAY QUAND QUELQUUN MEURT
  */
-#overlay-killed {
+#overlay-informations {
 	position: fixed;
 	width: 100%;
 	height: 100%;
