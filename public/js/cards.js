@@ -43,7 +43,7 @@ const cards = [
         "id": 6,
         "role": "Geek",
         "description": "Le/la geek est ultra connectée et elle a l'habitude des nuits blanches. Lorsque la nuit tombe il/elle peut choisir de faire une nuit blanche en programment et en jouant toute la nuit. Enfermée dans sa chambre, elle devient inatteignable pour les/le chien(s) perdu(s).La geek ne peut faire de nuit blanche qu'une seule fois toutes les deux nuit. Mais la geek est aussi une féru de gadget. Si elle est emmenée dans la forêt juste après une nuit blanche. Elle peut prendre en photo le chien perdu discrètement avant de mourir. Cette photo pourra être uniquement envoyée au pisteur des montagnes qui sera le seul à savoir exactement qui se cache derrière un des chiens perdu.",
-        "skills" : {"pros" : [{"libelle" : "Vote pour tuer une personne toutes les nuits", "when" : "night", "frequency" : 1}], "crons" : []},
+        "skills" : {"pros" : [{"libelle" : "Peut se protéger pour une nuit", "when" : "night", "cooldown" : 1},{"libelle" : "Montre au pisteur un chien perdu lors de sa mort durant la nuit.", "when" : "night", "cooldown" : 0}], "crons" : []},
         "side" : BAD_GUY
     },
     {
