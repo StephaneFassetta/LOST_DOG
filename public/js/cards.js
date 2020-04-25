@@ -66,7 +66,7 @@ const cards = [
         "description": " Son objectif est de soigné les personne possédé par l’esprit des chien perdu, après quelque recherche, il a réussi à trouver une formule permettant de les libérer de leur emprise. Malheureusement ce remède est long est difficile a fabriquer. il n'en possède que quelque doses.",
         "skills" : {"pros" : [{"libelle" : "Choisis un habitant dans lequel injecté le remède.", "when" : "night", "cooldown" : 1, "nbUse" : 2}], "cons" : ["libelle" : "Si l'habitant n'es pas un chien alors la dose de remède est perdu."]},
         "side" : GOOD_GUY
-    }
+    },
 ];
 
 export default cards;
