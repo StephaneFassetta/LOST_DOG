@@ -59,6 +59,13 @@ const cards = [
         "description": "Jack est solitaire. Son but est de tuer quiconque se mettra sur sa route. <br> Chaque nuit il choisit une personne a tuer, son objectif est d'être le dernier en vie.",
         "skills" : {"pros" : [{"libelle" : "Choisit une personne à assassiné.", "when" : "night", "cooldown" : 1, "nbUse" : 0}], "cons" : ["libelle" : "Ne peut pas tuer de chien durant la nuit. Si il attaque le prêtre durant sa prière, Jack meurt."]},
         "side" : ALONE_GUY
+    },
+    {
+        "id": 9,
+        "role": "Le vétérinaire",
+        "description": " Son objectif est de soigné les personne possédé par l’esprit des chien perdu, après quelque recherche, il a réussi à trouver une formule permettant de les libérer de leur emprise. Malheureusement ce remède est long est difficile a fabriquer. il n'en possède que quelque doses.",
+        "skills" : {"pros" : [{"libelle" : "Choisis un habitant dans lequel injecté le remède.", "when" : "night", "cooldown" : 1, "nbUse" : 2}], "cons" : ["libelle" : "Si l'habitant n'es pas un chien alors la dose de remède est perdu."]},
+        "side" : GOOD_GUY
     }
 ];
 
